@@ -1,0 +1,68 @@
+/* reset */
+*{box-sizing:border-box;}
+html,body{width:100%;height: 100%;font-size:62.5%;font-family:'Microsoft YaHei', Arial, Helvetica, sans-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:normal}
+a{text-decoration:none;outline:none;color:inherit}
+a:hover,a:visited,a:active,a:link{text-decoration:none}
+ul,li{list-style:none;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
+input,button,select,textarea{outline:none}
+
+.view-container {
+    position: relative;
+}
+
+.view-frame.ng-enter, .view-frame.ng-leave {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.view-frame.ng-enter {
+    left: 100%;
+}
+
+.view-frame.ng-enter {
+    -webkit-animation: 0.2s moveIn;
+    -moz-animation: 0.2s moveIn;
+    -o-animation: 0.2s moveIn;
+    animation: 0.2s moveIn;
+    z-index: 100;
+}
+
+.view-frame.ng-leave {
+    -webkit-animation: 0.2s fade-out;
+    -moz-animation: 0.2s fade-out;
+    -o-animation: 0.2s fade-out;
+    animation: 0.2s fade-out;
+    z-index:99;
+}
+
+@keyframes moveIn {
+    from { left: 100%; }
+    to { left: 0; }
+}
+@-moz-keyframes moveIn {
+    from { left: 100%; }
+    to { left: 0; }
+}
+@-webkit-keyframes moveIn {
+    from { left: 100%; }
+    to { left: 0; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+/* don't forget about the vendor-prefixes! */
