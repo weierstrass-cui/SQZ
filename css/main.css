@@ -100,7 +100,7 @@ input,button,select,textarea{outline:none}
 .blankCardBox{ width: 96%;padding: 8px 10px;overflow: hidden; margin:0 auto; background:#fff; display: block; border-radius: 8px; }
 .userHeadImg{width: 7rem;height: 7rem;border-radius: 50%;display: block; margin: 0 auto;}
 .userHeadName{ text-align: center;font-size: 1.4rem; color: #333; margin-top: 0.5rem;}
-.blankCardTit{width: 100%;height: 25px; font-size: 1.4rem; color: #f19611; border-bottom: 1px solid #f19611;}
+.blankCardTit{width: 100%;height: 25px;line-height: 25px; font-size: 1.4rem; color: #f19611; border-bottom: 1px solid #f19611;}
 .jumpCardBox{width: 100%;}
 .jumpCardBox a{width: 100%;height: 3.8rem;line-height:3.8rem; padding-left: 3px; font-size: 1.6rem; display: block; overflow: hidden; border-bottom: 1px solid #ccc;}
 .jumpCardBox a h3{width: 35%; height: 100%;  float: left; }
@@ -115,9 +115,9 @@ input,button,select,textarea{outline:none}
 .infoEditListHeightMid{max-height: calc(100% - 4rem); }
 .personInfoEditBtn{ width: 100%; text-align: center; margin-top: 1rem;}
 .personInfoEditBtn button{padding: 0.4rem 2rem ;border: none;  background: #f39800;color: #fff;border-radius: 3px; margin: 0 1rem;font-size: 1.4rem;}
-.editSearchBox{width: 80%;border: 1px solid red; margin:0 auto 1rem; overflow: hidden;border-radius: 1rem;}
-.editSearchBox input{width:calc(100% - 3rem); float: left; height: 2.6rem;background: #f2f2f2; padding-left: 0.5rem; border: none;}
-.editSearchBox .editSearchBtn{width:3rem;height: 2.6rem; background: pink; float: right;}
+.editSearchBox{width: 80%;margin:0.5rem auto 1rem; border:1px solid #bcbcbc;  overflow: hidden;border-radius: 1rem;}
+.editSearchBox input{width:calc(100% - 3rem); float: left; height: 2.6rem; padding-left: 1rem;color: #727171; border: none;}
+.editSearchBox .editSearchBtn{width:3rem;height: 2.0rem;line-height: 2.0rem;text-align: center; border-left:1px solid #bcbcbc; margin-top: 0.3rem;  font-size: 2rem; color: #bcbcbc; float: right;}
 .userNameEditBox{width: 100%;background: #fff; margin-top: 1rem;}
 .userNameEditBox input{width: 100%; padding:0rem 0.5rem; border: none; color: #727171; margin: 1.5rem 0px;}
 .nameFontCountBox{ width: 100%;overflow: hidden; }
@@ -133,21 +133,22 @@ input,button,select,textarea{outline:none}
 .myWorkAxis .myWorkAxisFont{padding-left: 1rem; height: 2.6rem;line-height: 2.6rem; float: left; color: #f19715; font-size: 1.6rem; border-left: 1px solid #f19715; margin-left: 1rem;}
 .myWorkAxis .myWorkAxisDate{height: 2.6rem;line-height: 2.6rem; float: right; color: #727171; font-size: 1.4rem;}
 
-.jobModelCardBox{width: 100%;height: 7rem; border:1px solid red; overflow: hidden; }
+.jobModelCardBox{width: 100%;height: 7rem;overflow: hidden; }
+.jobModelCardBox.jobModelCardBoxB{padding-top: 0.25rem; height: 7.5rem; border-bottom: 2px dashed #ccc;}
 .jobModelCardBox .jobModelCardImg{ width: 6rem; float: left; height: 6rem; border: 1px solid #b5b5b6; border-radius: 50%; position: relative; }
 .jobModelCardImg .jobModelCardMask {width: 3rem; height: 6rem; background: #fff; position: absolute; top: -1px; right: -1px;}
 .jobModelCardImg img{ width: 5.3rem; height: 5.3rem; display: block; position: absolute;top: 0.35rem; left: 0.35rem; border-radius: 50%;  }
 .jobModelCardImg .jobStyle{ color: #727171; font-size: 1.2rem; width: 3.5rem;  position: absolute;bottom:-1.2rem; left:3.5rem;}
-.jobSalaryBox{width: 7rem; height: 2.8rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative; margin-right: 0rem; }
+.jobSalaryBox{width: 7rem; height: 2.8rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
 .jobSalary{ width: 5.5rem; height: 1.8rem;line-height: 1.8rem;font-size: 1.2rem;  margin: 0.4rem auto; background: #f8ca92; color: #fff;  text-align: center;}
-.jobSalaryBox .circleCreIcon{ width: 1rem; height: 1rem; background:#f19625; position: absolute;top: 0.85rem; border-radius: 50%;   }
+.jobSalaryBox .circleCreIcon{ width: 1rem; height: 1rem;background:#f19625; position: absolute;top: 0.85rem; border-radius: 50%;   }
 .circleCreIcon span{ width: 1rem; height: 1rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;   }
 .circleCreIconLeft{left: -0.6rem;}
 .circleCreIconLeft span{right:1px;}
 .circleCreIconRight{right: -0.6rem;}
 .circleCreIconRight span{left:1px;}
-.jobInfoBox{width: calc(100% - 13.5rem);height: 100%; border: 1px solid blue; float: left;}
-.jobInfoBox h3{ color:#727171; font-size: 1.6rem;line-height: 1.6rem;  padding-left: 0.2rem;  }
+.jobInfoBox{width: calc(100% - 13.5rem);height: 100%; float: left;}
+.jobInfoBox h3{ color:#727171; font-size: 1.4rem;line-height: 1.6rem; padding-left: 0.2rem;}
 .jobInfoBox div{ color:#9fa0a0; font-size: 1.3rem; height: 1.5rem; line-height: 1.5rem;}
 
 .jobCompanyInfo{ display: block;width: 100%; }
@@ -156,13 +157,32 @@ input,button,select,textarea{outline:none}
 .jobCompanyInfo label{ color: #727171; }
 .jobCompanyInfo span{ width: 2rem; height: 2rem; line-height: 2rem; float: right; color: #f29715;}
 .fontAreaBox{width: 100%; color: #727171; padding-top: 0.2rem;}
-/* margin */
 
+.jobDetailsCon{width:100%; height:calc(100% - 3.5rem ); overflow: auto;}
+.jobDetailsBtnBox{width:100%;height:3.5rem; overflow:hidden;background: #fff; color: #9fa0a0;}
+.jobDetailsBtnBox i{color: #eb9214; font-size: 1.8rem; margin-right: 0.2rem;}
+.jobDetailsBtnBox a{width:50%;height:100%;line-height:3.5rem; float: left;text-align: center;}
+.jobDetailsBtnBox a.baomingBtn{background:#eb9214; color: #fff; }
+
+
+
+
+
+
+
+
+
+/* margin */
+.marginTop05{margin-top: 0.5rem;}
 .marginTop1{margin-top: 1rem;}
 .marginTop2{margin-top: 2rem;}
-
-
-
+.marginBottom1{margin-top: 1rem;}
+.marginRight02{margin-right: 0.2rem;}
+.iconfontSize12{ font-size: 1.2rem; margin-right: 0.1rem;}
+.iconfontSize13{ font-size: 1.3rem; margin-right: 0.1rem; }
+.iconfontSize14{ font-size: 1.4rem; }
+.iconfontSize15{ font-size: 1.5rem; }
+.iconfontSize16{ font-size: 1.6rem; }
 
 
 
@@ -172,22 +192,24 @@ input,button,select,textarea{outline:none}
     .myWorkAxis .myWorkAxisFont{font-size: 1.4rem;}
 
     .jobModelCardBox{height: 6rem;}
+    .jobModelCardBox.jobModelCardBoxB{padding-top: 0.25rem; height: 6.5rem;}
     .jobModelCardBox .jobModelCardImg{ width: 5rem; float: left; height: 5rem;}
     .jobModelCardImg .jobModelCardMask {width: 2.5rem; height: 5rem;}
     .jobModelCardImg img{ width: 4.3rem; height: 4.3rem; position: absolute;top: 0.25rem; left: 0.25rem; }
     .jobModelCardImg .jobStyle{ font-size: 1.2rem; width: 3.5rem;font-size: 1.2rem;  position: absolute;bottom:-1.2rem; left:2.5rem;}
     
 
-    .jobSalaryBox{width: 6rem; height: 2.4rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative; margin-right: 0rem; }
+    .jobSalaryBox{width: 6rem; height: 2.4rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
     .jobSalary{ width: 4.5rem; height: 1.6rem;line-height: 1.6rem;font-size: 1rem;  margin: 0.3rem auto; background: #f8ca92; color: #fff;  text-align: center;}
-    .jobSalaryBox .circleCreIcon{ width: 0.8rem; height: 0.8rem; background:#f19625; position: absolute;top: 0.65rem; border-radius: 50%;   }
-    .circleCreIcon span{ width: 0.8rem; height: 0.8rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;   }
+    .jobSalaryBox .circleCreIcon{ width: 0.8rem; height: 0.8rem; background:#f19625; position: absolute;top: 0.65rem; border-radius: 50%;z-index:9;}
+    .circleCreIcon span{ width: 0.8rem; height: 0.8rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;z-index:10;}
     .circleCreIconLeft{left: -0.6rem;}
     .circleCreIconRight{right: -0.6rem;}
-    .jobInfoBox{width: calc(100% - 11rem);height: 100%; border: 1px solid blue; float: left;}
+    .jobInfoBox{width: calc(100% - 11rem);height: 100%; float: left;}
     .jobInfoBox h3{ color:#727171; font-size: 1.4rem;line-height: 1.4rem;  padding-left: 0.2rem;  }
     .jobInfoBox div{ color:#9fa0a0; font-size: 1.2rem; height: 1.2rem;line-height: 1.2rem; }
     .jobInfoBox div i{font-size: 1.2rem;}
+    .jobInfoBox div span{font-size: 1.2rem;}
 }
 @media screen and (min-width: 321px) and (max-width: 375px){
     .companyInfo h4{margin-top:0.6rem;}
