@@ -8,15 +8,14 @@
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-xinfengxi"></span>
                <input type="text" class="yanzheng" placeholder="验证码" ng-model="verificationCode"></input>
-               <div class="yanzhengTime timeBoxBg" ng-click="fn.showTime();" ng-class="{true:'timeBoxBgGray', false:'timeBoxBg'}[isChange]">{{timeTit}}</div>
+               <div class="yanzhengTime timeBoxBg" ng-click="fn.getCode();" ng-class="{true:'timeBoxBgGray', false:'timeBoxBg'}[isChange]">{{timeTit}}</div>
            </li>
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-mima"></span>
                <input type="text" ng-model="registerPsd" placeholder="密码"></input>
            </li>
-
            <li>
-               <span  class="iconInfo iconfont icon-yaoqingma"></span>
+               <span class="iconInfo iconfont icon-yaoqingma"></span>
                <input type="text" ng-model="inviteCode" placeholder="邀请码(可不填)"></input>
            </li>
        </ul>

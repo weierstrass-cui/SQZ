@@ -11,6 +11,9 @@
 	}]);
 	mainCtrl.factory('$registerService', ['$request', function(request){
 		return {
+			getCode: function(obj, callback){
+				request.post('/userService/getCaptcha', obj, callback);
+			},
 			registerRecommend:function(obj, callback){
 				request.post('/api/saleActivity/getActiviInforRecommend', obj, callback);
 			}

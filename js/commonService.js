@@ -29,44 +29,57 @@
 				}
 			}
 		}
+		var fromatData = function(json){
+			// {key: value, key: value} => key=value;key=value
+			var str = [];
+			for(var i in json){
+				str.push(i + '=' + json[i]);
+			}
+			return (';' + str.join(';'));
+		}
+		var transform = function(data){
+		    return $.param(data);
+		}
+
 		var isOnError = false;
+		var deviceType = '';
+		if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ){
+			deviceType = 'ios';
+		}else if(/Android/i.test(navigator.userAgent)){
+			deviceType = 'android';
+		}
+		
 		return {
 			getLocalURL: function(){
 				return localUrl;
 			},
 			post: function(fnName, json, callback, parm, showLoading){
-				if( !$storage.getLocalStorage('insuranceId') ){
-					$rootScope.$broadcast('onError', {title: '参数错误',  message: '未设置保险公司ID'});
-					return false;
-				}
-				if( !$storage.getLocalStorage('openId') ){
-					$rootScope.$broadcast('onError', {title: '参数错误',  message: '未设置用户OPENID'});
-					return false;
-				}
-
-				var postData = {
-					object: json,
-					insuranceId: $storage.getLocalStorage('insuranceId'),
-					openId: $storage.getLocalStorage('openId'),
-					userId: $storage.getLocalStorage('userId') || ' ',
-					ajax: 1
-				};
-
 				if( showLoading !== false){
 					$rootScope.isLoadingData = true;
 				}
-				var transform = function(data){
-				    return $.param(data);
+				var postUrl = '';
+				if( typeof json === 'string'){
+					// 直接拼
+					postUrl = localUrl + fnName + '/' + json + '/sys;terminal=' + deviceType;
+				}else if( typeof json === 'object' ){
+					// key=value;key=value
+					postUrl = localUrl + fnName + '/' + fromatData(json) + '/sys;terminal=' + deviceType;
 				}
-				// formatDateInObjectToString(data);
-				$http.post(localUrl + fnName, {data: JSON.stringify(postData)+ '/sys;terminal=' + device }, {
+				console.log(postUrl);
+				return;
+				if(postUrl === ''){
+					$rootScope.$broadcast('onError', {title: '系统错误',  message: '参数出错'});
+					return false;
+				}
+
+				$http.post(postUrl, {}, {
 				    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
 				    transformRequest: transform
 				})
 				.success(function(res){
-					if( res.ifSuccess == 'Y' ){
+					if( res.status == 'succ' ){
 						if(typeof callback === 'function'){
-							callback(res.object);
+							callback(res.result);
 						}
 					}else{
 						if( !isOnError ){
@@ -87,17 +100,6 @@
 						$rootScope.isLoadingData = false;
 					}
 				});
-			},
-			setPublicParm: function(key, value){
-				if( typeof key === 'string' && value ){
-					$storage.setLocalStorage(key, value);
-				}else if( typeof key === 'object' ){
-					for(var i in key){
-						$storage.setLocalStorage(i, key[i]);
-					}
-				}else{
-					$rootScope.$broadcast('onError', {title: '参数出错',  message: '设置的功能参数不正确'});
-				}
 			}
 		}
 	}]);

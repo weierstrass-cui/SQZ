@@ -121,14 +121,14 @@ var mainCtrl = '';
 				},
 				// 弹窗
 				alertMsg: function(title, message, ok){
-					$scope.alertTitle = title || '系统错误';
+					$scope.alertTitle = title || '系统提醒';
 					$scope.alertMessage = message || '出错了，请稍后重试';
 					$scope.alertOk = ok || '确定';
 					$scope.isAlert = true;
 				},
 				// 确认框
 				confirmMsg: function(title, message, success, cancel){
-					$scope.confirmTitle = title || '系统错误';
+					$scope.confirmTitle = title || '系统提醒';
 					$scope.confirmMessage = message || '出错了，请稍后重试';
 					$scope.isConfirm = true;
 					$scope.confirmAction = {

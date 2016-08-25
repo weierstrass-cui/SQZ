@@ -10,8 +10,8 @@
 			console.log('login')
 		}
 	]);
-	mainCtrl.controller('registerController', ['$scope', '$interval',
-		function($scope,$interval){
+	mainCtrl.controller('registerController', ['$scope', '$interval', '$registerService', 
+		function($scope,$interval, $registerService){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
 			$scope.submitList = {
@@ -21,25 +21,30 @@
 				inviteCode: $scope.inviteCode
 			};
 			$scope.fn = {
-				showTime:function(){
-					if( !$scope.vaildata.checkPhone($scope.mobilePhone)){
-						$scope.commonFn.alertMsg('系统提醒', '输入的电话号码有误');
+				getCode:function(){
+					if( $scope.isChange ){
+						$scope.commonFn.alertMsg(null, '验证码已发送，请耐心等待');
 						return false;
 					}
-					if($scope.timeTit == "获取验证码"){						
-						var start = 60;
-						$scope.isChange = true;
-						//定时器
-						var timer = $interval(function(){
-							var t = start--;
-							$scope.timeTit = t + "s";
-						}, 1000, 60); 
-						alert('123');
-						timer.then(function success(){
-							$scope.timeTit = "获取验证码";
-							$scope.isChange = false;
-						}); 
+					if( !$scope.vaildata.checkPhone($scope.mobilePhone)){
+						$scope.commonFn.alertMsg(null, '输入的电话号码有误');
+						return false;
 					}
+					$registerService.getCode($scope.mobilePhone, function(){
+						if($scope.timeTit == "获取验证码"){						
+							var start = 60;
+							$scope.isChange = true;
+							//定时器
+							var timer = $interval(function(){
+								var t = start--;
+								$scope.timeTit = t + "s";
+							}, 1000, 60);
+							timer.then(function success(){
+								$scope.timeTit = "获取验证码";
+								$scope.isChange = false;
+							}); 
+						}
+					});
 				},
 				submitList:function(){
 					if(!$scope.submitList.mobilePhone){
@@ -59,7 +64,7 @@
 					};
 					
 					//提交信息接口
-					$registerService.registerRecommend($scope.submitList,function(res){
+					$registerService.registerRecommend($scope.submitList, function(res){
 						console.log(res);
 					});	
 				}
