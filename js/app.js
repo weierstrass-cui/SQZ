@@ -6,7 +6,8 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			templateUrl: 'template/login.html'
 			/*controller: 'homeController'*/
 		}).when('/register', {
-			templateUrl: 'template/register.html'
+			templateUrl: 'template/register.html',
+			controller: 'registerController'
 		}).when('/getBackPsd', {
 			templateUrl: 'template/getBackPsd.html'
 		}).when('/userInfoEdit', {
@@ -28,7 +29,8 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/jobDetails', {
 			templateUrl: 'template/jobDetails.html'
 		}).when('/myCollection', {
-			templateUrl: 'template/myCollection.html'
+			templateUrl: 'template/myCollection.html',
+			controller: 'myCollectionController'
 		}).when('/companyDetails', {
 			templateUrl: 'template/companyDetails.html'
 		});

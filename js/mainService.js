@@ -6,7 +6,14 @@
 
 	mainCtrl.factory('$loginService', ['$request', function(request){
 		return {
-			
+
+		}
+	}]);
+	mainCtrl.factory('$registerService', ['$request', function(request){
+		return {
+			registerRecommend:function(obj, callback){
+				request.post('/api/saleActivity/getActiviInforRecommend', obj, callback);
+			}
 		}
 	}]);
 	

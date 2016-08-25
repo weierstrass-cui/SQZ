@@ -33,6 +33,13 @@ var mainCtrl = '';
 				})(index);
 			}
 
+			$scope.vaildata = {
+				//电话号码正则
+				checkPhone: function(phone){
+					return /^1\d{10}$/.test(phone);
+				}
+			}
+
 			$scope.commonFn = {
 				// 缓存表单数据
 				cacheFormData: function(data){

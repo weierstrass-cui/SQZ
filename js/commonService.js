@@ -1,6 +1,6 @@
 (function(){
-	//var localUrl = 'http://192.168.18.109:8000/app';
-	 var localUrl = 'http://120.26.122.173:8000/app';
+	var localUrl = 'http://apptest.54jeunesse.com:8088/part';
+	/*var localUrl = 'http://120.26.122.173:8000/app';*/
 
 	// 重写 Date的toJSON方法，满足后台对日期格式的需求
 	// 1990-12-31T00:00:00Z
@@ -59,7 +59,7 @@
 				    return $.param(data);
 				}
 				// formatDateInObjectToString(data);
-				$http.post(localUrl + fnName, {data: JSON.stringify(postData)}, {
+				$http.post(localUrl + fnName, {data: JSON.stringify(postData)+ '/sys;terminal=' + device }, {
 				    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
 				    transformRequest: transform
 				})
