@@ -3,19 +3,19 @@
        <ul class="loginConBox">
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-shoujihao"></span>
-               <input type="text" placeholder="手机号"></input>
+               <input type="text" placeholder="手机号" ng-model="submitList.phone"></input>
            </li>
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-xinfengxi"></span>
-               <input type="text" class="yanzheng" placeholder="验证码"></input>
-               <div class="yanzhengTime">获取验证码</div>
+               <input type="text" class="yanzheng" placeholder="验证码" ng-model="submitList.captcha"></input>
+               <div class="yanzhengTime timeBoxBg" ng-click="fn.getCode()" ng-class="{true:'timeBoxBgGray', false:'timeBoxBg'}[isChange]">{{timeTit}}</div>
            </li>
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-mima"></span>
-               <input type="text" placeholder="新密码"></input>
+               <input type="password" placeholder="新密码" ng-model="submitList.pass"></input>
            </li>
        </ul>
-       <a href="" class="loginBtn sureBtn">重置密码</a>
+       <a href="" ng-click="fn.submitList()" class="loginBtn sureBtn">重置密码</a>
    </div>
    <div class="companyInfo">
          <h4>2015上海简知网络科技有限公司</h4>

@@ -53,6 +53,9 @@
 			getLocalURL: function(){
 				return localUrl;
 			},
+			getDeviceType: function(){
+				return deviceType;
+			},
 			post: function(fnName, json, callback, parm, showLoading){
 				if( showLoading !== false){
 					$rootScope.isLoadingData = true;
@@ -63,10 +66,11 @@
 					postUrl = localUrl + fnName + '/' + json + '/sys;terminal=' + deviceType;
 				}else if( typeof json === 'object' ){
 					// key=value;key=value
-					postUrl = localUrl + fnName + '/' + fromatData(json) + '/sys;terminal=' + deviceType;
+					postUrl = localUrl + fnName + fromatData(json) + '/sys;terminal=' + deviceType;
+					//postUrl = localUrl + fnName + '/' + fromatData(json) + '/sys;terminal=' + deviceType;
 				}
 				console.log(postUrl);
-				return;
+				/*return;*/
 				if(postUrl === ''){
 					$rootScope.$broadcast('onError', {title: '系统错误',  message: '参数出错'});
 					return false;

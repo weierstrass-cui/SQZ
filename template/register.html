@@ -3,27 +3,27 @@
        <ul class="loginConBox">
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-shoujihao"></span>
-               <input type="text" placeholder="手机号" ng-model="mobilePhone"></input>
+               <input type="text" placeholder="手机号" ng-model="submitList.phone" ></input>
            </li>
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-xinfengxi"></span>
-               <input type="text" class="yanzheng" placeholder="验证码" ng-model="verificationCode"></input>
+               <input type="text" class="yanzheng" placeholder="验证码" ng-model="submitList.captcha"></input>
                <div class="yanzhengTime timeBoxBg" ng-click="fn.getCode();" ng-class="{true:'timeBoxBgGray', false:'timeBoxBg'}[isChange]">{{timeTit}}</div>
            </li>
            <li class="marBottomLit">
                <span  class="iconInfo iconfont icon-mima"></span>
-               <input type="text" ng-model="registerPsd" placeholder="密码"></input>
+               <input type="text" ng-model="submitList.pass" placeholder="密码"></input>
            </li>
            <li>
                <span class="iconInfo iconfont icon-yaoqingma"></span>
-               <input type="text" ng-model="inviteCode" placeholder="邀请码(可不填)"></input>
+               <input type="text" ng-model="submitList.invitedCode" placeholder="邀请码(可不填)"></input>
            </li>
        </ul>
        <div class="loginmPsdDo">
             <label class="labelBig"><input class="checkboxSty" type="checkbox" /> 我已阅读并同意 <a href="">《实兼轴用户注册条款》</a></label>
        </div>
        <div class="loginPsdError">密码错误，请重新输入！</div>
-       <a href="" class="loginBtn sureBtn">立即注册</a>
+       <a href="" class="loginBtn sureBtn" ng-click="fn.submitList();" >立即注册</a>
     </div>
     <div class="companyInfo">
          <h4>2015上海简知网络科技有限公司</h4>

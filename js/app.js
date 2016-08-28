@@ -3,15 +3,17 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 	function($routeProvider){
 		$routeProvider
 		.when('/login', {
-			templateUrl: 'template/login.html'
-			/*controller: 'homeController'*/
+			templateUrl: 'template/login.html',
+			controller: 'loginController'
 		}).when('/register', {
 			templateUrl: 'template/register.html',
 			controller: 'registerController'
 		}).when('/getBackPsd', {
-			templateUrl: 'template/getBackPsd.html'
+			templateUrl: 'template/getBackPsd.html',
+			controller: 'getBackPsdController'
 		}).when('/userInfoEdit', {
-			templateUrl: 'template/userInfoEdit.html'
+			templateUrl: 'template/userInfoEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/sexEdit', {
 			templateUrl: 'template/sexEdit.html'
 		}).when('/resumeEdit', {
@@ -23,7 +25,8 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/districtInfoEdit', {
 			templateUrl: 'template/districtInfoEdit.html'
 		}).when('/userNameEdit', {
-			templateUrl: 'template/userNameEdit.html'
+			templateUrl: 'template/userNameEdit.html',
+			controller: 'userNameEditController'
 		}).when('/myWorkAxis', {
 			templateUrl: 'template/myWorkAxis.html'
 		}).when('/jobDetails', {
