@@ -170,35 +170,33 @@
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage',
 		function($scope,$storage){
 			//18817384281 w4894t
-			var info = JSON.parse($storage.getLocalStorage('userInfo'));
-	        console.log(info);
-
-
-	        /*$scope.urlDayScore = $scope.commonFn.buildParamsForUrl({
-				scoreType : 1
-			});*/
 			//var joins = $scope.commonFn.getParamsFromUrl();
-
-			$scope.fn = {
-				
-			}
+			var info = JSON.parse($storage.getLocalStorage('userInfo'));
+			$scope.username = '';
+			$scope.nickName = '';
+	        console.log(info);
+	        $scope.username = info.username || info.phone;
+	        $scope.nickName = $storage.getLocalStorage('nickName');
+	        console.log($scope.nickName);
+          
+			$storage.removeLocalStorage('nickName');
+			
 		}
 	]);
 	mainCtrl.controller('userNameEditController', ['$scope', '$storage',
 		function($scope,$storage){
 			//18817384281 w4894t
-			$scope.userNameEdit='';
-			var info = JSON.parse($storage.getLocalStorage('userInfo'));
-	        console.log(info);
+			/*$scope.userNameEdit='';*/
 			$scope.fn = {
 				cancel:function(){
 					$scope.commonFn.goLastView();
 				},
 				submit:function(){
-					$scope.nameEdit = $scope.commonFn.buildParamsForUrl({
+					/*$scope.nameEdit = $scope.commonFn.buildParamsForUrl({
 						userName : $scope.userNameEdit
-					});
-					//$scope.commonFn.goLastView('userInfoEdit?newCar=1');
+					});*/
+					$storage.setLocalStorage('nickName',$scope.userNameEdit);
+					$scope.commonFn.goLastView('userInfoEdit');
 				}
 			}
 		}
