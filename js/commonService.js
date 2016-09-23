@@ -87,7 +87,7 @@
 					}else{
 						if( !isOnError ){
 							isOnError = true;
-							$rootScope.$broadcast('onError', {title: '系统错误',  message: res.description});
+							$rootScope.$broadcast('onError', {title: '系统错误',  message: res.result.err});
 							setTimeout(function(){
 								isOnError = false;
 							}, 3000);

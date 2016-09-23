@@ -7,6 +7,7 @@ var mainCtrl = '';
 			$scope.currentParams = {};
 			$scope.cacheDataPool = {};
 			$scope.cacheData = {};
+			$scope.publicData = {};
 			// for alert
 			$scope.isAlert = false;
 			$scope.isConfirm = false;
@@ -46,6 +47,12 @@ var mainCtrl = '';
 			}
 
 			$scope.commonFn = {
+				setPublicData: function(key, value){
+					$scope.publicData[key] = value;
+				},
+				getPublicData: function(key){
+					return $scope.publicData[key]
+				},
 				// 缓存表单数据
 				cacheFormData: function(data){
 					$scope.cacheDataPool[$location.$$path] = data;

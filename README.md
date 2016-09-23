@@ -1,4 +1,7 @@
 # SQZ
+
+注意：使用localstoratge的时候，命名前请添加 SQZ_ 前缀
+
 后台参数传递：
 /userService/login/map;loginName=13585948849;pass=_I8sJx/sys;terminal=android
 {

@@ -4,39 +4,34 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
-    //登录
-	mainCtrl.controller('loginController', ['$scope', '$loginService','$location','$storage',
-		function($scope,$loginService,$location,$storage){
+    // 登录
+	mainCtrl.controller('loginController', ['$scope', '$loginService','$storage',
+		function($scope,$loginService,$storage){
 			$scope.loginList = {
-				loginName:'',
-				pass:''
+				loginName:'13611944988',
+				pass:'ZAQ!xsw2'
 			}
 			$scope.fn = {
 				loginSubmit:function(){
-					console.log($scope.loginList);
 					if(!$scope.loginList.loginName || !$scope.loginList.pass){
 						$scope.commonFn.alertMsg("输入错误", "用户名或密码不能为空");
 						return false;
 					}
-					// /userService/login/map;loginName=13585948849;pass=_I8sJx/sys;terminal=android
+
 					$loginService.login({
 						map: $scope.loginList,
 						sys: {
 							terminal: $scope.commonFn.getDevice()
 						}
 					}, function(res){
-						//18817384281 w4894t
-						var user = res.user,userInfo;
-						userInfo = {id:user.id,gender:user.gender,phone:user.phone};
-						$storage.setLocalStorage('userInfo',JSON.stringify(userInfo));
-						$location.path('userInfoEdit');
+						$scope.commonFn.setPublicData('userInfo', res.user);
+						$scope.commonFn.goView('userInfoEdit');
 					});
 				}
 			}
-			
 		}
 	]);
-	//找回密码
+	// 找回密码
 	mainCtrl.controller('getBackPsdController', ['$scope','$publicService', '$getBackPsdService','$interval',
 		function($scope, $publicService, $getBackPsdService, $interval){
 			$scope.timeTit = '获取验证码';
@@ -78,7 +73,6 @@
 					});
 				},
 				submitList:function(){
-					console.log($scope.submitList);
 					if(!$scope.submitList.phone){
 						$scope.commonFn.alertMsg("输入错误", "手机号不能为空");
 						return false;
@@ -105,7 +99,7 @@
 			
 		}
 	]);
-	//注册
+	// 注册
 	mainCtrl.controller('registerController', ['$scope','$publicService', '$interval', '$registerService', '$location',
 		function($scope,$publicService,$interval,$registerService,$location){
 			$scope.timeTit = '获取验证码';
@@ -179,37 +173,11 @@
 
 		}
 	]);
+	// 首页
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage',
-		function($scope,$storage){
-			var info = JSON.parse($storage.getLocalStorage('userInfo'));
-			$scope.username = '';
-			$scope.nickName = '';
-	        $scope.username = info.username || info.phone;
-	        $scope.nickName = $storage.getLocalStorage('nickName');
-			$storage.removeLocalStorage('nickName');
-			
-		}
-	]);
-	mainCtrl.controller('userNameEditController', ['$scope', '$storage',
-		function($scope,$storage){
-			$scope.fn = {
-				cancel:function(){
-					$scope.commonFn.goLastView();
-				},
-				submit:function(){
-					$storage.setLocalStorage('nickName',$scope.userNameEdit);
-					$scope.commonFn.goLastView('userInfoEdit');
-				}
-			}
-		}
-	]);
-	mainCtrl.controller('myCollectionController', ['$scope', 
-		function($scope){
-			$scope.fn = {
-				showRemoveBtn:function(e){
-					
-				}
-			}
+		function($scope, $storage){
+			var userInfo = $scope.commonFn.getPublicData('userInfo');
+			console.log(userInfo);
 		}
 	]);
 })();
