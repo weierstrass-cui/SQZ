@@ -24,6 +24,7 @@
 							terminal: $scope.commonFn.getDevice()
 						}
 					}, function(res){
+						$storage.setLocalStorage('SQZ_token', res.token);
 						$scope.commonFn.setPublicData('userInfo', res.user);
 						$scope.commonFn.goView('userInfoEdit');
 					});
