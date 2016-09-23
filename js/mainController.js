@@ -1,4 +1,4 @@
-
+// 登录注册
 (function(){
 	if( mainCtrl == ''){
 		console.log('mainCtrl 加载出错');
@@ -18,14 +18,18 @@
 						$scope.commonFn.alertMsg("输入错误", "用户名或密码不能为空");
 						return false;
 					}
-					$loginService.login($scope.loginList, function(res){
+					// /userService/login/map;loginName=13585948849;pass=_I8sJx/sys;terminal=android
+					$loginService.login({
+						map: $scope.loginList,
+						sys: {
+							terminal: $scope.commonFn.getDevice()
+						}
+					}, function(res){
 						//18817384281 w4894t
-						console.log(res);
 						var user = res.user,userInfo;
 						userInfo = {id:user.id,gender:user.gender,phone:user.phone};
 						$storage.setLocalStorage('userInfo',JSON.stringify(userInfo));
 						$location.path('userInfoEdit');
-
 					});
 				}
 			}
@@ -33,8 +37,8 @@
 		}
 	]);
 	//找回密码
-	mainCtrl.controller('getBackPsdController', ['$scope', '$getBackPsdService','$interval',
-		function($scope,$getBackPsdService,$interval){
+	mainCtrl.controller('getBackPsdController', ['$scope','$publicService', '$getBackPsdService','$interval',
+		function($scope, $publicService, $getBackPsdService, $interval){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
 			$scope.submitList = {
@@ -52,7 +56,12 @@
 						$scope.commonFn.alertMsg(null, '输入的电话号码有误');
 						return false;
 					}
-					$getBackPsdService.getCode($scope.submitList.phone, function(res){
+					$publicService.getCode({
+						noName: $scope.submitList.phone,
+						sys: {
+							terminal: $scope.commonFn.getDevice()
+						}
+					}, function(res){
 						if($scope.timeTit == "获取验证码"){						
 							var start = 60;
 							$scope.isChange = true;
@@ -87,7 +96,6 @@
 					};
 					//提交信息接口
 					$getBackPsdService.getBackPsd($scope.submitList, function(res){
-						console.log(res);
 						$scope.commonFn.alertMsg(null, "密码设置成功");
 						$location.path('login');
 					});
@@ -98,8 +106,8 @@
 		}
 	]);
 	//注册
-	mainCtrl.controller('registerController', ['$scope', '$interval', '$registerService', '$location',
-		function($scope,$interval, $registerService,$location){
+	mainCtrl.controller('registerController', ['$scope','$publicService', '$interval', '$registerService', '$location',
+		function($scope,$publicService,$interval,$registerService,$location){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
 			$scope.submitList = {
@@ -107,7 +115,8 @@
 				captcha:'',
 				invitedCode:'',
 				channel:'self',
-				pass:''
+				pass:'',
+				terminal: $scope.commonFn.getDevice()
 			};
 			$scope.fn = {
 				getCode:function(){
@@ -119,7 +128,13 @@
 						$scope.commonFn.alertMsg(null, '输入的电话号码有误');
 						return false;
 					}
-					$registerService.getCode($scope.submitList.phone, function(res){
+
+					$publicService.getCode({
+						noName: $scope.submitList.phone,
+						sys: {
+							terminal: $scope.commonFn.getDevice()
+						}
+					}, function(res){
 						if($scope.timeTit == "获取验证码"){						
 							var start = 60;
 							$scope.isChange = true;
@@ -136,12 +151,6 @@
 					});
 				},
 				submitList:function(){
-
-					/*if($registerService.getDeviceType() == 'android'){
-						$scope.submitList.channel = 'self';
-						console.log($scope.submitList.channel);
-					}*/
-					console.log($scope.submitList);
 					if(!$scope.submitList.phone){
 						$scope.commonFn.alertMsg("输入错误", "手机号不能为空");
 						return false;
@@ -149,15 +158,18 @@
 		                $scope.commonFn.alertMsg("输入错误", "手机号有误");
 						return false;
 		            };
-					if( !$scope.submitList.captcha){
+
+					if( !$scope.submitList.captcha ){
 						$scope.commonFn.alertMsg('系统提醒', '请输入验证码');
 						return false;
 					};
 					
 					//提交信息接口
-					$registerService.registerRecommend($scope.submitList, function(res){
-						console.log(res);
-						
+					// /userService/reg/user;phone=13585948849;invitedCode=;captcha=1628;channel=self;terminal=ios/sys
+					$registerService.registerRecommend({
+						user: $scope.submitList,
+						sys: {}
+					}, function(res){
 						$scope.commonFn.alertMsg(null, "注册成功");
 						$location.path('login');
 						//$scope.commonFn.goView('/login');
@@ -169,32 +181,22 @@
 	]);
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage',
 		function($scope,$storage){
-			//18817384281 w4894t
-			//var joins = $scope.commonFn.getParamsFromUrl();
 			var info = JSON.parse($storage.getLocalStorage('userInfo'));
 			$scope.username = '';
 			$scope.nickName = '';
-	        console.log(info);
 	        $scope.username = info.username || info.phone;
 	        $scope.nickName = $storage.getLocalStorage('nickName');
-	        console.log($scope.nickName);
-          
 			$storage.removeLocalStorage('nickName');
 			
 		}
 	]);
 	mainCtrl.controller('userNameEditController', ['$scope', '$storage',
 		function($scope,$storage){
-			//18817384281 w4894t
-			/*$scope.userNameEdit='';*/
 			$scope.fn = {
 				cancel:function(){
 					$scope.commonFn.goLastView();
 				},
 				submit:function(){
-					/*$scope.nameEdit = $scope.commonFn.buildParamsForUrl({
-						userName : $scope.userNameEdit
-					});*/
 					$storage.setLocalStorage('nickName',$scope.userNameEdit);
 					$scope.commonFn.goLastView('userInfoEdit');
 				}

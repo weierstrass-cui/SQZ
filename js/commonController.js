@@ -7,7 +7,6 @@ var mainCtrl = '';
 			$scope.currentParams = {};
 			$scope.cacheDataPool = {};
 			$scope.cacheData = {};
-			$scope.historyPath = [];
 			// for alert
 			$scope.isAlert = false;
 			$scope.isConfirm = false;
@@ -16,6 +15,12 @@ var mainCtrl = '';
 			});
 
 			var currentLocation = {};
+			var deviceType = '';
+			if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ){
+				deviceType = 'ios';
+			}else if(/Android/i.test(navigator.userAgent)){
+				deviceType = 'android';
+			}
 
 			//声明字典字段
 			var dictionaryMapping = {
@@ -56,7 +61,6 @@ var mainCtrl = '';
 					}else{
 						newData = null;
 					}
-					
 					return  newData;
 				},
 				// 清空缓存的表单
@@ -105,26 +109,32 @@ var mainCtrl = '';
 					$scope.dictionary[key] = value;
 				},
 				// 跳转到指定页面
-				goView: function(viewName){
-					$location.path(viewName);
+				goView: function(viewName, back){
+					if( back ){
+						$location.path(viewName).replace();
+					}else{
+						$location.path(viewName);
+					}
 				},
 				// 返回上一页面
 				goLastView: function(){
-					var viewName = $scope.historyPath.pop();
-					if( viewName ){
-						$scope.commonFn.goView(viewName);
-					}
+					history.back();
 				},
-				// 重置页面浏览历史
-				resetHistory: function(){
-					$scope.historyPath = [];
+				// 获取设备类型
+				getDevice: function(){
+					return deviceType;
 				},
 				// 弹窗
-				alertMsg: function(title, message, ok){
+				alertMsg: function(title, message, success){
 					$scope.alertTitle = title || '系统提醒';
 					$scope.alertMessage = message || '出错了，请稍后重试';
-					$scope.alertOk = ok || '确定';
 					$scope.isAlert = true;
+					$scope.alertAction = {
+						success: function(){
+							if(typeof success === 'function') success();
+							$scope.isAlert = false;
+						}
+					}
 				},
 				// 确认框
 				confirmMsg: function(title, message, success, cancel){
@@ -163,9 +173,6 @@ var mainCtrl = '';
 					$scope.currentParams = $scope.paramsPool[stateName] = params;
 				}else if( stateName && $scope.paramsPool[stateName] ){
 					$scope.currentParams = $scope.paramsPool[stateName];
-				}
-				if( last ){
-					$scope.historyPath.push(last.originalPath);
 				}
 			});
 

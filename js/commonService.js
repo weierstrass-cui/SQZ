@@ -42,12 +42,6 @@
 		}
 
 		var isOnError = false;
-		var deviceType = '';
-		if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ){
-			deviceType = 'ios';
-		}else if(/Android/i.test(navigator.userAgent)){
-			deviceType = 'android';
-		}
 		
 		return {
 			getLocalURL: function(){
@@ -61,21 +55,26 @@
 					$rootScope.isLoadingData = true;
 				}
 				var postUrl = '';
-				if( typeof json === 'string'){
-					// 直接拼
-					postUrl = localUrl + fnName + '/' + json + '/sys;terminal=' + deviceType;
-				}else if( typeof json === 'object' ){
-					// key=value;key=value
-					postUrl = localUrl + fnName + fromatData(json) + '/sys;terminal=' + deviceType;
-					//postUrl = localUrl + fnName + '/' + fromatData(json) + '/sys;terminal=' + deviceType;
+				if( typeof json !== 'object' ){
+					$rootScope.$broadcast('onError', {title: '系统错误',  message: '接口传递参数格式错误'});
+					return;
 				}
-				console.log(postUrl);
-				/*return;*/
+				postUrl = localUrl + fnName;
+				for(var i in json){
+					if( i == 'noName'){
+						postUrl += ('/' + json[i]);
+					}else{
+						postUrl += ('/' + i);
+						for(var j in json[i]){
+							postUrl += (';' + j + '=' + json[i][j]);
+						}
+					}
+				}
 				if(postUrl === ''){
 					$rootScope.$broadcast('onError', {title: '系统错误',  message: '参数出错'});
 					return false;
 				}
-
+				
 				$http.post(postUrl, {}, {
 				    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
 				    transformRequest: transform

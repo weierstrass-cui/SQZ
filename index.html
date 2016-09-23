@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<title>wechatShop</title>
+	<title>实兼轴</title>
 	<link href="lib/weui/weui.min.css" rel="stylesheet">
     <link href="lib/iconfont/iconfont.css" rel="stylesheet">
     <!-- 工作css -->
@@ -14,7 +14,13 @@
     <script src="js/commonController.js"></script>
     <script src="js/commonService.js"></script>
     <script src="js/mainController.js"></script>
+    <script src="js/mainController_my.js"></script>
+    <script src="js/mainController_company.js"></script>
+    <script src="js/mainController_resume.js"></script>
     <script src="js/mainService.js"></script>
+    <script src="js/mainService_my.js"></script>
+    <script src="js/mainService_company.js"></script>
+    <script src="js/mainService_resume.js"></script>
 </head>
 <body ng-app="starter" ng-controller="main" class="view-container">
     <div class="container view-frame" id="container" ng-view></div>
@@ -46,7 +52,7 @@
             <div class="weui_dialog_hd"><strong class="weui_dialog_title">{{alertTitle}}</strong></div>
             <div class="weui_dialog_bd">{{alertMessage}}</div>
             <div class="weui_dialog_ft">
-                <a href="javascript://" ng-click="isAlert = false;" class="weui_btn_dialog primary">{{alertOk}}</a>
+                <a href="javascript://" ng-click="alertAction.success();" class="weui_btn_dialog primary">确定</a>
             </div>
         </div>
     </div>
