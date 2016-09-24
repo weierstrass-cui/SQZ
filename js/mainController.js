@@ -177,10 +177,7 @@
 	// 用户资料
 	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService',
 		function($scope, $storage, $userService){
-			var userId = $storage.getLocalStorage('SQZ_userId');
-
 			$userService.getUser({
-				noName: userId,
 				sys: {
 					token: $scope.commonFn.getToken(),
 					terminal: $scope.commonFn.getDevice()

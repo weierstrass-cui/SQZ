@@ -36,7 +36,7 @@
 	mainCtrl.factory('$userService', ['$request', function(request){
 		return {
 			getUser:function(obj, callback){
-				request.post('/userService/show', obj, callback);
+				request.post('/userService/showSelf', obj, callback);
 			},
 			modifyUser: function(obj, callback){
 				request.post('/userService/modify', obj, callback);
