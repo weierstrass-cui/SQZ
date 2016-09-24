@@ -4,6 +4,7 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
+	// 个人资料编辑所有页面通用
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage', '$userService','$publicService',
 		function($scope,$storage,$userService,$publicService){
 			$scope.userInfo = $scope.commonFn.getParamsFromUrl();

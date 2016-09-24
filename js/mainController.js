@@ -211,12 +211,18 @@
 					});
 				}
 				if( res.user.schoolId ){
-					$publicService.getOneSchool({
-						noName: res.user.schoolId,
-						sys:{}
-					},function(schoolRES){
-						res.user.schoolName = schoolRES.school.name;
-					});
+					var schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));
+					if( schoolCache && schoolCache.id == res.user.schoolId ){
+						res.user.schoolName = schoolCache.name;
+					}else{
+							$publicService.getOneSchool({
+							noName: res.user.schoolId,
+							sys:{}
+						},function(schoolRES){
+							res.user.schoolName = schoolRES.school.name;
+							$storage.setLocalStorage('SQZ_school', JSON.stringify({id: res.user.schoolId, name: schoolRES.school.name}));
+						});
+					}
 				}
 				$scope.userInfo = res.user;
 			});
