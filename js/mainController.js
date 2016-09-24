@@ -187,29 +187,44 @@
 					if(typeof callback === 'function') callback();
 				});
 			}
+			var setAreaCache = function(id, name){
+				$storage.setLocalStorage('SQZ_area', JSON.stringify({
+					id: id,
+					name: name
+				}));
+			}
 			$userService.getUser({
 				sys: {
 					token: $scope.commonFn.getToken(),
 					terminal: $scope.commonFn.getDevice()
 				}
 			}, function(res){
-				if( res.user.provinceId ){
-					getAreaName(res.user.provinceId, function(){
-						if( res.user.cityId ){
-							getAreaName(res.user.cityId, function(){
-								if( res.user.distId ){
-									getAreaName(res.user.distId, function(){
+				var areaCache = JSON.parse($storage.getLocalStorage('SQZ_area'));
+				if( areaCache && areaCache.id == [res.user.provinceId, res.user.cityId, res.user.distId].join(',') ){
+					res.user.areaName = areaCache.name;
+				}else{
+					if( res.user.provinceId ){
+						getAreaName(res.user.provinceId, function(){
+							if( res.user.cityId ){
+								getAreaName(res.user.cityId, function(){
+									if( res.user.distId ){
+										getAreaName(res.user.distId, function(){
+											res.user.areaName = areaName.join(' - ');
+											setAreaCache([res.user.provinceId, res.user.cityId, res.user.distId].join(','), res.user.areaName);
+										});
+									}else{
 										res.user.areaName = areaName.join(' - ');
-									});
-								}else{
-									res.user.areaName = areaName.join(' - ');
-								}
-							});
-						}else{
-							res.user.areaName = areaName.join(' - ');
-						}
-					});
+										setAreaCache([res.user.provinceId, res.user.cityId, '0'].join(','), res.user.areaName);
+									}
+								});
+							}else{
+								res.user.areaName = areaName.join(' - ');
+								setAreaCache([res.user.provinceId, '0', '0'].join(','), res.user.areaName);
+							}
+						});
+					}
 				}
+				
 				if( res.user.schoolId ){
 					var schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));
 					if( schoolCache && schoolCache.id == res.user.schoolId ){
