@@ -230,7 +230,7 @@
 					if( schoolCache && schoolCache.id == res.user.schoolId ){
 						res.user.schoolName = schoolCache.name;
 					}else{
-							$publicService.getOneSchool({
+						$publicService.getOneSchool({
 							noName: res.user.schoolId,
 							sys:{}
 						},function(schoolRES){

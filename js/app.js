@@ -17,6 +17,9 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/sexEdit', {
 			templateUrl: 'template/sexEdit.html',
 			controller: 'userInfoEditController'
+		}).when('/myResume', {
+			templateUrl: 'template/myResume.html',
+			controller: 'myResumeController'
 		}).when('/resumeEdit', {
 			templateUrl: 'template/resumeEdit.html'
 		}).when('/schoolSelEdit', {
@@ -30,6 +33,9 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			controller: 'userInfoEditController'
 		}).when('/userNameEdit', {
 			templateUrl: 'template/userNameEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/userNickEdit', {
+			templateUrl: 'template/userNickEdit.html',
 			controller: 'userInfoEditController'
 		}).when('/myWorkAxis', {
 			templateUrl: 'template/myWorkAxis.html'

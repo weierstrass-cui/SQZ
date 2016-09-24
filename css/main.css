@@ -68,7 +68,7 @@ input,button,select,textarea{outline:none}
 /* don't forget about the vendor-prefixes! */
 .container{width: 100%;height: 100%; overflow: auto;}
 
-.commonBox{width: 100%;height: 100%;position: relative; background:#efeff0; font-size: 1.4rem;}
+.commonBox{width: 100%;height: 100%;position: relative; background:#efeff0; font-size: 1.4rem;overflow:hidden;}
 .commonConBox{width: 100%;height:91%; background:#fff; position: absolute; top: 0px;left: 0px; overflow:auto; }
 .commonConBoxBg{background:#efeff0; border-bottom: 1px solid #ccc;}
 .companyInfo{width: 100%;height:9%;border-top: 1px solid #efeff0; background:#efeff0;text-align: center;  position: absolute; bottom: 0px;left: 0px;}
