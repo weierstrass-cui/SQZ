@@ -131,6 +131,9 @@ var mainCtrl = '';
 				getDevice: function(){
 					return deviceType;
 				},
+				getToken: function(){
+					return $storage.getLocalStorage('SQZ_token');
+				},
 				// 弹窗
 				alertMsg: function(title, message, success){
 					$scope.alertTitle = title || '系统提醒';

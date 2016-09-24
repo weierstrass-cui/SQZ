@@ -1,6 +1,9 @@
 # SQZ
 
-注意：使用localstoratge的时候，命名前请添加 SQZ_ 前缀
+注意：使用localstoratge的时候，命名前请添加 SQZ_ 前缀， 且尽量不要使用
+
+获取token：
+$scope.commonFn.getToken();
 
 后台参数传递：
 /userService/login/map;loginName=13585948849;pass=_I8sJx/sys;terminal=android
@@ -47,4 +50,5 @@ $scope.commonFn.goLastView();
 弹窗提示：
 $scope.commonFn.alertMsg([标题], [内容], [确定后回调函数]);
 $scope.commonFn.confirmMsg([标题], [内容], [确定后回调函数], [取消后回调函数]);
+
 

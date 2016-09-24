@@ -1,14 +1,14 @@
 <div class="commonBox">
     <div class="commonConBox commonConBoxBg">
        <div class="userNameEditBox">
-          <input type="text" value="宝强不哭" ng-model="userNameEdit"></input>
+          <input type="text" placeholder="请输入您的昵称" ng-model="userInfo.nick"></input>
        </div>
-       <div class="nameFontCountBox">
+       <!-- <div class="nameFontCountBox">
           <div class="nameFontCount"><span>5</span>/<span>15</span></div>
-       </div>
+       </div> -->
        <div class="personInfoEditBtn">
            <button  ng-click="fn.cancel()">取 消</button>
-           <button  ng-click="fn.submit()">确 认</button>
+           <button  ng-click="fn.submit({nick: '请输入您的昵称'})">确 认</button>
        </div> 
     </div>
     <div class="companyInfo">

@@ -13,9 +13,10 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			controller: 'getBackPsdController'
 		}).when('/userInfoEdit', {
 			templateUrl: 'template/userInfoEdit.html',
-			controller: 'userInfoEditController'
+			controller: 'userInfoController'
 		}).when('/sexEdit', {
-			templateUrl: 'template/sexEdit.html'
+			templateUrl: 'template/sexEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/resumeEdit', {
 			templateUrl: 'template/resumeEdit.html'
 		}).when('/schoolSelEdit', {
@@ -26,7 +27,7 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			templateUrl: 'template/districtInfoEdit.html'
 		}).when('/userNameEdit', {
 			templateUrl: 'template/userNameEdit.html',
-			controller: 'userNameEditController'
+			controller: 'userInfoEditController'
 		}).when('/myWorkAxis', {
 			templateUrl: 'template/myWorkAxis.html'
 		}).when('/jobDetails', {

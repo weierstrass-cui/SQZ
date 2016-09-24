@@ -25,7 +25,7 @@
 						}
 					}, function(res){
 						$storage.setLocalStorage('SQZ_token', res.token);
-						$scope.commonFn.setPublicData('userInfo', res.user);
+						$storage.setLocalStorage('SQZ_userId', res.user.id);
 						$scope.commonFn.goView('userInfoEdit');
 					});
 				}
@@ -174,11 +174,20 @@
 
 		}
 	]);
-	// 首页
-	mainCtrl.controller('userInfoEditController', ['$scope', '$storage',
-		function($scope, $storage){
-			var userInfo = $scope.commonFn.getPublicData('userInfo');
-			console.log(userInfo);
+	// 用户资料
+	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService',
+		function($scope, $storage, $userService){
+			var userId = $storage.getLocalStorage('SQZ_userId');
+
+			$userService.getUser({
+				noName: userId,
+				sys: {
+					token: $scope.commonFn.getToken(),
+					terminal: $scope.commonFn.getDevice()
+				}
+			}, function(res){
+				$scope.userInfo = res.user;
+			});
 		}
 	]);
 })();

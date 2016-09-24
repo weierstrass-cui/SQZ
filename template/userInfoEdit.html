@@ -8,30 +8,30 @@
       <div class="blankCardBox marginTop1">
           <h3 class="blankCardTit">编辑个性资料</h3>
           <div class="jumpCardBox">
-              <a href="#userNameEdit">
+              <a ng-href="#userNameEdit?nick={{userInfo.nick}}">
                   <h3>昵称</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>{{nickName}}</span>
+                  <span>{{userInfo.nick}}</span>
               </a>
               <a href="">
                   <h3>账号</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>18811111111</span>
+                  <span>账号</span>
               </a>
-              <a href="#sexEdit">
+              <a ng-href="#sexEdit?gender={{userInfo.gender}}">
                   <h3>性别</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>女</span>
+                  <span>{{userInfo.gender}}</span>
               </a>
               <a href="#districtSelEdit">
                   <h3>地区</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>上海</span>
+                  <span>地区</span>
               </a>
               <a href="#schoolSelEdit">
                   <h3>学校</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>上海神经病培训学院</span>
+                  <span>{{userInfo.schoolId}}</span>
               </a>
               <a href="#resumeEdit">
                   <h3>我的简历</h3>
