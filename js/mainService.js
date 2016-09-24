@@ -7,6 +7,12 @@
 		return {
 			getCode: function(obj, callback){
 				request.post('/userService/getCaptcha', obj, callback);
+			},
+			getAreaList: function(obj, callback){
+				request.post('/regionService/children', obj, callback);
+			},
+			getOneArea: function(obj, callback){
+				request.post('/regionService/find', obj, callback);
 			}
 		}
 	}]);

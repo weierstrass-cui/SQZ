@@ -22,9 +22,11 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/schoolSelEdit', {
 			templateUrl: 'template/schoolSelEdit.html'
 		}).when('/districtSelEdit', {
-			templateUrl: 'template/districtSelEdit.html'
+			templateUrl: 'template/districtSelEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/districtInfoEdit', {
-			templateUrl: 'template/districtInfoEdit.html'
+			templateUrl: 'template/districtInfoEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/userNameEdit', {
 			templateUrl: 'template/userNameEdit.html',
 			controller: 'userInfoEditController'

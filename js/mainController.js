@@ -175,14 +175,41 @@
 		}
 	]);
 	// 用户资料
-	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService',
-		function($scope, $storage, $userService){
+	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService','$publicService',
+		function($scope, $storage, $userService,$publicService){
+			var areaName = [];
+			var getAreaName = function(areaId, callback){
+				$publicService.getOneArea({
+					noName: areaId,
+					sys:{}
+				},function(res){
+					areaName.push(res.region.name);
+					if(typeof callback === 'function') callback();
+				});
+			}
 			$userService.getUser({
 				sys: {
 					token: $scope.commonFn.getToken(),
 					terminal: $scope.commonFn.getDevice()
 				}
 			}, function(res){
+				if( res.user.provinceId ){
+					getAreaName(res.user.provinceId, function(){
+						if( res.user.cityId ){
+							getAreaName(res.user.cityId, function(){
+								if( res.user.distId ){
+									getAreaName(res.user.distId, function(){
+										res.user.areaName = areaName.join(' - ');
+									});
+								}else{
+									res.user.areaName = areaName.join(' - ');
+								}
+							});
+						}else{
+							res.user.areaName = areaName.join(' - ');
+						}
+					});
+				}
 				$scope.userInfo = res.user;
 			});
 		}
