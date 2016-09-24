@@ -13,6 +13,12 @@
 			},
 			getOneArea: function(obj, callback){
 				request.post('/regionService/find', obj, callback);
+			},
+			getSchoolList: function(obj, callback){
+				request.post('/schoolService/findAll', obj, callback);
+			},
+			getOneSchool: function(obj, callback){
+				request.post('/schoolService/find', obj, callback);
 			}
 		}
 	}]);

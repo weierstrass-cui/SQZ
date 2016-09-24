@@ -20,7 +20,8 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/resumeEdit', {
 			templateUrl: 'template/resumeEdit.html'
 		}).when('/schoolSelEdit', {
-			templateUrl: 'template/schoolSelEdit.html'
+			templateUrl: 'template/schoolSelEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/districtSelEdit', {
 			templateUrl: 'template/districtSelEdit.html',
 			controller: 'userInfoEditController'

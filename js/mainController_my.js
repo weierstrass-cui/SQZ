@@ -27,6 +27,17 @@
 					
 					$scope.areaList = res.list;
 				});
+			}else if( $scope.userInfo.load == 'school' ){
+				$publicService.getSchoolList({
+					sys:{}
+				}, function(res){
+					$scope.schoolList = res.school;
+				});
+			}
+			$scope.filter = {
+				schoolFilter: function(item){
+					return !$scope.schoolFilterKey || item.name.indexOf($scope.schoolFilterKey) != '-1';
+				}
 			}
 			$scope.fn = {
 				setGender: function(gender){
@@ -49,6 +60,18 @@
 							$scope.commonFn.goView('/userInfoEdit');
 						});
 					}
+				},
+				setSchool: function(schoolId){
+					$userService.modifyUser({
+						user: {
+							schoolId: schoolId
+						},
+						sys: {
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						$scope.commonFn.goView('/userInfoEdit');
+					});
 				},
 				cancel: function(){
 					$scope.commonFn.goLastView();

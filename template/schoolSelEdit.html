@@ -1,20 +1,12 @@
 <div class="commonBox">
     <div class="commonConBox">
        <div class="editSearchBox">
-          <input type="text" placeholder="请输入学校名称关键字"></input>
+          <input type="text" ng-model="schoolFilterKey" placeholder="请输入学校名称关键字"></input>
           <div class="iconInfo iconfont icon-sousuo editSearchBtn "></div>
        </div>
        <ul class="personInfoEditList infoEditListHeightLit">
-           <li>北京大学</li>
-           <li>中国人民大学</li>
-           <li class="infoEditActive">北京航空大学</li>
-           <li>上海同济大学</li>
-           <li>上海复旦大学</li>
-           <li>上海工程技术大学</li>
-       <div class="personInfoEditBtn">
-           <button>取 消</button>
-           <button>确 认</button>
-       </div>
+           <li ng-repeat="item in schoolList | filter:filter.schoolFilter" ng-class="{true:'infoEditActive', false:''}[item.id == userInfo.schoolId]" ng-click="fn.setSchool(item.id);">{{item.name}}</li>
+        </ul>
     </div>
     <div class="companyInfo">
          <h4>2015上海简知网络科技有限公司</h4>

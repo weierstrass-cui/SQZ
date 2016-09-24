@@ -210,6 +210,14 @@
 						}
 					});
 				}
+				if( res.user.schoolId ){
+					$publicService.getOneSchool({
+						noName: res.user.schoolId,
+						sys:{}
+					},function(schoolRES){
+						res.user.schoolName = schoolRES.school.name;
+					});
+				}
 				$scope.userInfo = res.user;
 			});
 		}
