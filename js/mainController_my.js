@@ -58,7 +58,7 @@
 								token: $scope.commonFn.getToken()
 							}
 						}, function(res){
-							$scope.commonFn.goView('/userInfoEdit');
+							$scope.commonFn.goView('/userInfoEdit', true);
 						});
 					}
 				},
@@ -71,7 +71,7 @@
 							token: $scope.commonFn.getToken()
 						}
 					}, function(res){
-						$scope.commonFn.goView('/userInfoEdit');
+						$scope.commonFn.goView('/userInfoEdit', true);
 					});
 				},
 				cancel: function(){
