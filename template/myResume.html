@@ -15,7 +15,7 @@
               <a ng-href="#birthdayEdit?birthDay={{userInfo.birthDay}}">
                   <h3>生日</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>{{userInfo.birthDay}}</span>
+                  <span>{{userInfo.birthDay | date: 'yyyy-MM-dd'}}</span>
               </a>
               <a ng-href="#resumePhoneEdit?resumePhone={{userInfo.resumePhone}}">
                   <h3>电话</h3>

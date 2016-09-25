@@ -10,7 +10,10 @@
 	Date.prototype.toJSON = function(){
 		var str = this.getFullYear() + '-';
 			str += addZero(this.getMonth() + 1) + '-';
-			str += addZero(this.getDate());
+			str += addZero(this.getDate()) + ' ';
+			str += addZero(this.getHours()) + ':';
+			str += addZero(this.getMinutes()) + ':';
+			str += addZero(this.getSeconds()) + '';
 		return str;
 	}
 	// 远程请求
