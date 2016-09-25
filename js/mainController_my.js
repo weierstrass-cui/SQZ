@@ -81,6 +81,7 @@
 					for(var i in $scope.userInfo){
 						if( !$scope.userInfo[i] ){
 							$scope.commonFn.alertMsg(null, keys[i]);
+							return;
 						}
 					}
 

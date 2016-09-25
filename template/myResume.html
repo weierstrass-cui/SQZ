@@ -12,17 +12,17 @@
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
                   <span>{{userInfo.gender}}</span>
               </a>
-              <a ng-href="#districtSelEdit?load=area&areaId=0&step=1">
+              <a ng-href="#birthdayEdit?birthDay={{userInfo.birthDay}}">
                   <h3>生日</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
                   <span>{{userInfo.birthDay}}</span>
               </a>
-              <a ng-href="#schoolSelEdit?load=school&schoolId={{userInfo.schoolId}}">
+              <a ng-href="#resumePhoneEdit?resumePhone={{userInfo.resumePhone}}">
                   <h3>电话</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
-                  <span>{{userInfo.phone}}</span>
+                  <span>{{userInfo.resumePhone}}</span>
               </a>
-              <a ng-href="#schoolSelEdit?load=school&schoolId={{userInfo.schoolId}}">
+              <a ng-href="#emailEdit?email={{userInfo.email}}">
                   <h3>电子邮箱</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
                   <span>{{userInfo.email}}</span>
@@ -32,7 +32,7 @@
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
                   <span>{{userInfo.schoolName}}</span>
               </a>
-              <a ng-href="#schoolSelEdit?load=school&schoolId={{userInfo.schoolId}}">
+              <a ng-href="#educationEdit?education={{userInfo.education}}">
                   <h3>学历</h3>
                   <i class="iconInfo iconfont icon-xiangyou"> </i>
                   <span>{{userInfo.educationName}}</span>

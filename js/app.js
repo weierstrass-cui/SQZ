@@ -17,6 +17,15 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/sexEdit', {
 			templateUrl: 'template/sexEdit.html',
 			controller: 'userInfoEditController'
+		}).when('/birthdayEdit', {
+			templateUrl: 'template/birthdayEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/emailEdit', {
+			templateUrl: 'template/emailEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/resumePhoneEdit', {
+			templateUrl: 'template/resumePhoneEdit.html',
+			controller: 'resumeInfoEditController'
 		}).when('/myResume', {
 			templateUrl: 'template/myResume.html',
 			controller: 'myResumeController'

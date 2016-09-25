@@ -5,8 +5,8 @@
 		return;
 	}
 	// 我的简历
-	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage',
-		function($scope, $resumeService,$storage){
+	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage','$publicService',
+		function($scope, $resumeService,$storage,$publicService){
 			$resumeService.getResume({
 				sys: {
 					token: $scope.commonFn.getToken(),
@@ -43,8 +43,18 @@
 					for(var i in $scope.userInfo){
 						if( !$scope.userInfo[i] ){
 							$scope.commonFn.alertMsg(null, keys[i]);
+							return;
 						}
 					}
+
+					$resumeService.modifyResume({
+						user: $scope.userInfo,
+						sys: {
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						$scope.commonFn.goLastView();
+					});
 				}
 			}
 		}

@@ -10,22 +10,19 @@
 	Date.prototype.toJSON = function(){
 		var str = this.getFullYear() + '-';
 			str += addZero(this.getMonth() + 1) + '-';
-			str += addZero(this.getDate()) + 'T';
-			str += addZero(this.getHours()) + ':';
-			str += addZero(this.getMinutes()) + ':';
-			str += addZero(this.getSeconds()) + 'Z';
+			str += addZero(this.getDate());
 		return str;
 	}
 	// 远程请求
 	mainCtrl.factory('$request', ['$rootScope', '$http', '$storage', function($rootScope, $http, $storage){
 		var formatDateInObjectToString = function(object){
 			for(var i in object){
-				if(typeof object[i] === 'object'){
-					formatDateInObjectToString(object[i]);
+				if( object[i].toString().indexOf('GMT') == 25 ){
+					object[i] = object[i].toJSON();
 					continue;
 				}
-				if( typeof object[i] === 'string' && object[i].indexOf('GMT') == 26 ){
-					object[i] = new Date(object[i]).toJSON();
+				if(typeof object[i] === 'object'){
+					formatDateInObjectToString(object[i]);
 				}
 			}
 		}
