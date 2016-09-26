@@ -71,7 +71,7 @@ input,button,select,textarea{outline:none}
 .commonBox{width: 100%;height: 100%;position: relative; background:#efeff0; font-size: 1.4rem;overflow:hidden;}
 .commonConBox{width: 100%;height:91%; background:#fff; position: absolute; top: 0px;left: 0px; overflow:auto; }
 .commonConBoxBg{background:#efeff0; border-bottom: 1px solid #ccc;}
-.companyInfo{width: 100%;height:9%;border-top: 1px solid #efeff0; background:#efeff0;text-align: center;  position: absolute; bottom: 0px;left: 0px;}
+.companyInfo{width: 100%;height:65px;border-top: 1px solid #efeff0; background:#efeff0;text-align: center;  position: absolute; bottom: 0px;left: 0px;}
 .companyInfo h4{width: 100%;height:1.8rem;font-size: 1rem; color: #7e7d7d;margin-top:1%;}
 .companyInfo a{padding:1px 6px; border: 1px solid #f19611;color:#f19611; font-size: 1.2rem; border-radius:8px; }
 
@@ -98,10 +98,9 @@ input,button,select,textarea{outline:none}
 .loginPsdError{width:80%;height: 40px;line-height: 40px;text-align: center; display: none; border: 2px dashed #eb9c27; color: #eb9c27; margin: 0 auto; font-size: 1.6rem; }
 
 /* userInfoEdit */
-
+.resumeBox{width:100%;height:calc(100% - 140px);margin-bottom:10px;overflow:scroll;}
 .blankCardBox{ width: 96%;padding: 8px 10px;overflow: hidden; margin:0 auto; background:#fff; display: block; border-radius: 8px; position: relative; }
 .blankCardDelete{ width: 30%; height: 100%; font-size: 1.8rem; line-height: 7rem; text-align: center; background:rgba(0,0,0,0.5);position: absolute; top: 0px; right:-30%; color: red; }
-
 .userHeadImg{width: 7rem;height: 7rem;border-radius: 50%;display: block; margin: 0 auto;}
 .userHeadName{ text-align: center;font-size: 1.4rem; color: #333; margin-top: 0.5rem;}
 .blankCardTit{width: 100%;height: 25px;line-height: 25px; font-size: 1.4rem; color: #f19611; border-bottom: 1px solid #f19611;}
@@ -127,6 +126,11 @@ input,button,select,textarea{outline:none}
 .nameFontCountBox{ width: 100%;overflow: hidden; }
 .nameFontCountBox .nameFontCount{ width:4rem;height: 2rem; text-align: center; color: #f39700; float: right;}
 
+.bottomBtns{width:100%;height:50px;overflow:hidden;}
+.bottomBtns a{background:#fff;color:#727171;font-size:1.4rem;height:50px;line-height:50px;text-align:center;float:left;display:inline-block;}
+.bottomBtns a.short{width:40%}
+.bottomBtns a.long{width:60%}
+.bottomBtns .highLight{background:#f29725;color:#fff}
 
 .myWorkAxis{ width: 96%;padding:8px 15px;overflow: hidden; margin:0 auto; background:#fff; border-radius: 8px; }
 .myWorkAxis span{width: 3rem; height: 1.6rem;line-height: 1.6rem; float: left; margin-top: 0.5rem; color: #fff; font-size: 1.2rem; text-align: center;}

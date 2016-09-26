@@ -10,7 +10,7 @@
 				request.post('/userService/showSelf', obj, callback);
 			},
 			modifyResume: function(obj, callback){
-				request.post('/userService/modify', obj, callback);
+				request.post('/userService/v10/resume', obj, callback);
 			}
 		}
 	}]);

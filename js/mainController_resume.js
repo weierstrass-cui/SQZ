@@ -4,12 +4,30 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
+	var educationList = [{id: '0',name: '不详'},{id: '1',name: '专科'},{id: '2',name: '本科'},{id: '3',name: '硕士'},{id: '4',name: '博士'}],
+		politicalList = [{name: '党员'},{name: '团员'},{name: '群众'},{name: '其他'}],
+		taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
 	// 我的简历
 	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage','$publicService',
 		function($scope, $resumeService,$storage,$publicService){
 			var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume'));
-			var buildNewResume = function(){
 
+			$scope.fn = {
+				saveResume: function(){
+					if( resumeCache.isChange == '1' ){
+						$resumeService.modifyResume({
+							user: resumeCache.resumeData,
+							sys: {
+								token: $scope.commonFn.getToken()
+							}
+						}, function(res){
+							console.log(res);
+						});
+					}
+				},
+				viewResume: function(){
+
+				}
 			}
 			if( !resumeCache ){
 				$resumeService.getResume({
@@ -36,15 +54,17 @@
 					var resumeData = {
 						name: res.user.name,
 						gender: res.user.gender,
-						birthDay: res.user.birthDay ? new Date(res.user.birthDay) : '',
+						birthDay: res.user.birthDay,
+						birthDayFack: res.user.birthDay ? new Date(res.user.birthDay) : '',
 						resumePhone: res.user.resumePhone,
 						email: res.user.email,
 						schoolId: res.user.schoolId,
 						schoolName: res.user.schoolName,
 						education: res.user.education,
-						educationName: res.user.educationName,
+						educationName: educationList[res.user.education].name,
 						political: res.user.political,
 						taskType: res.user.taskType,
+						taskTypeName: taskTypeList[res.user.taskType].name,
 						head: res.user.head,
 						nation: res.user.nation,
 						photo: res.user.photo,
@@ -61,16 +81,15 @@
 					$scope.userInfo = resumeData;
 				});
 			}else{
-				resumeCache.resumeData.birthDay = resumeCache.resumeData.birthDay ? new Date(resumeCache.resumeData.birthDay) : '',
+				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? new Date(resumeCache.resumeData.birthDay) : '',
 				$scope.userInfo = resumeCache.resumeData;
 			}
 		}
 	]);
+	// 简历编辑通用方法
 	mainCtrl.controller('resumeInfoEditController', ['$scope', '$resumeService', '$storage','$publicService',
 		function($scope, $resumeService,$storage, $publicService){
-			console.log('123');
 			var param = $scope.commonFn.getParamsFromUrl();
-			console.log(param);
 			$scope.userInfo = param;
 			if( $scope.userInfo.load == 'school' ){
 				$publicService.getSchoolList({
@@ -79,45 +98,11 @@
 					$scope.schoolList = res.school;
 				});
 			}else if( $scope.userInfo.load == 'education' ){
-				// 0/不详；1/专科；2/本科；3/硕士；4/博士
-				$scope.educationList = [{
-					id: '0',
-					name: '不详'
-				},{
-					id: '1',
-					name: '专科'
-				},{
-					id: '2',
-					name: '本科'
-				},{
-					id: '3',
-					name: '硕士'
-				},{
-					id: '4',
-					name: '博士'
-				}];
+				$scope.educationList = educationList;
 			}else if( $scope.userInfo.load == 'political' ){
-				$scope.politicalList = [{
-					name: '党员'
-				},{
-					name: '团员'
-				},{
-					name: '群众'
-				},{
-					name: '其他'
-				}];
+				$scope.politicalList = politicalList;
 			}else if( $scope.userInfo.load == 'taskType' ){
-				// 0/无，1/兼职；2/实习
-				$scope.taskTypeList = [{
-					id: '0',
-					name: '不详'
-				},{
-					id: '1',
-					name: '兼职'
-				},{
-					id: '2',
-					name: '实习'
-				}]
+				$scope.taskTypeList = taskTypeList
 			}
 
 			var updateResumeLocalStorage = function(json){
@@ -167,7 +152,7 @@
 				setTaskType: function(taskTypeId, taskTypeName){
 					updateResumeLocalStorage({
 						taskType: taskTypeId,
-						taskType: taskTypeName
+						taskTypeName: taskTypeName
 					});
 					$scope.commonFn.goLastView();
 				},
