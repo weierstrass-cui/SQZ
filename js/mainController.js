@@ -7,10 +7,14 @@
     // 登录
 	mainCtrl.controller('loginController', ['$scope', '$loginService','$storage',
 		function($scope,$loginService,$storage){
+			// $scope.loginList = {
+			// 	loginName:'13611944988',
+			// 	pass:'ZAQ!xsw2'
+			// };
 			$scope.loginList = {
-				loginName:'13611944988',
-				pass:'ZAQ!xsw2'
-			}
+				loginName:'',
+				pass:''
+			};
 			$scope.fn = {
 				loginSubmit:function(){
 					if(!$scope.loginList.loginName || !$scope.loginList.pass){
