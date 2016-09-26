@@ -58,6 +58,9 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 		}).when('/taskTypeEdit', {
 			templateUrl: 'template/resume/taskTypeEdit.html',
 			controller: 'resumeInfoEditController'
+		}).when('/experienceEdit', {
+			templateUrl: 'template/resume/experienceEdit.html',
+			controller: 'resumeInfoEditController'
 		})
 		
 

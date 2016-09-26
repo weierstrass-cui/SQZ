@@ -103,6 +103,9 @@
 				$scope.politicalList = politicalList;
 			}else if( $scope.userInfo.load == 'taskType' ){
 				$scope.taskTypeList = taskTypeList
+			}else if( $scope.userInfo.load == 'experience' ){
+				var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume'));
+				$scope.userInfo.experience = resumeCache.resumeData.experience;
 			}
 
 			var updateResumeLocalStorage = function(json){
