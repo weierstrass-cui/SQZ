@@ -3,50 +3,65 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 	function($routeProvider){
 		$routeProvider
 		.when('/login', {
-			templateUrl: 'template/login.html',
+			templateUrl: 'template/user/login.html',
 			controller: 'loginController'
 		}).when('/register', {
-			templateUrl: 'template/register.html',
+			templateUrl: 'template/user/register.html',
 			controller: 'registerController'
 		}).when('/getBackPsd', {
-			templateUrl: 'template/getBackPsd.html',
+			templateUrl: 'template/user/getBackPsd.html',
 			controller: 'getBackPsdController'
 		}).when('/userInfoEdit', {
-			templateUrl: 'template/userInfoEdit.html',
+			templateUrl: 'template/user/userInfoEdit.html',
 			controller: 'userInfoController'
 		}).when('/sexEdit', {
-			templateUrl: 'template/sexEdit.html',
+			templateUrl: 'template/user/sexEdit.html',
 			controller: 'userInfoEditController'
-		}).when('/birthdayEdit', {
-			templateUrl: 'template/birthdayEdit.html',
-			controller: 'resumeInfoEditController'
-		}).when('/emailEdit', {
-			templateUrl: 'template/emailEdit.html',
-			controller: 'resumeInfoEditController'
-		}).when('/resumePhoneEdit', {
-			templateUrl: 'template/resumePhoneEdit.html',
-			controller: 'resumeInfoEditController'
-		}).when('/myResume', {
-			templateUrl: 'template/myResume.html',
-			controller: 'myResumeController'
-		}).when('/resumeEdit', {
-			templateUrl: 'template/resumeEdit.html'
+		}).when('/userNickEdit', {
+			templateUrl: 'template/user/userNickEdit.html',
+			controller: 'userInfoEditController'
 		}).when('/schoolSelEdit', {
-			templateUrl: 'template/schoolSelEdit.html',
+			templateUrl: 'template/user/schoolSelEdit.html',
 			controller: 'userInfoEditController'
 		}).when('/districtSelEdit', {
-			templateUrl: 'template/districtSelEdit.html',
+			templateUrl: 'template/user/districtSelEdit.html',
 			controller: 'userInfoEditController'
-		}).when('/districtInfoEdit', {
-			templateUrl: 'template/districtInfoEdit.html',
-			controller: 'userInfoEditController'
-		}).when('/userNameEdit', {
-			templateUrl: 'template/userNameEdit.html',
+		})
+
+		.when('/myResume', {
+			templateUrl: 'template/resume/myResume.html',
+			controller: 'myResumeController'
+		}).when('/resumeSexEdit', {
+			templateUrl: 'template/resume/sexEdit.html',
 			controller: 'resumeInfoEditController'
-		}).when('/userNickEdit', {
-			templateUrl: 'template/userNickEdit.html',
-			controller: 'userInfoEditController'
-		}).when('/myWorkAxis', {
+		}).when('/userNameEdit', {
+			templateUrl: 'template/resume/userNameEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/emailEdit', {
+			templateUrl: 'template/resume/emailEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/birthdayEdit', {
+			templateUrl: 'template/resume/birthdayEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/resumePhoneEdit', {
+			templateUrl: 'template/resume/resumePhoneEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/resumeSchoolSelEdit', {
+			templateUrl: 'template/resume/schoolSelEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/educationEdit', {
+			templateUrl: 'template/resume/educationEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/politicalEdit', {
+			templateUrl: 'template/resume/politicalEdit.html',
+			controller: 'resumeInfoEditController'
+		}).when('/taskTypeEdit', {
+			templateUrl: 'template/resume/taskTypeEdit.html',
+			controller: 'resumeInfoEditController'
+		})
+		
+
+		.when('/myWorkAxis', {
 			templateUrl: 'template/myWorkAxis.html'
 		}).when('/jobDetails', {
 			templateUrl: 'template/jobDetails.html'

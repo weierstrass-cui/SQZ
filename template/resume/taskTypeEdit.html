@@ -1,0 +1,11 @@
+<div class="commonBox">
+    <div class="commonConBox">
+       <ul class="personInfoEditList">
+           <li ng-repeat="item in taskTypeList" ng-class="{true:'infoEditActive', false:''}[userInfo.taskType==item.id]" ng-click="fn.setTaskType(item.id, item.name);">{{item.name}}</li>
+       </ul>
+    </div>
+    <div class="companyInfo">
+         <h4>2015上海简知网络科技有限公司</h4>
+         <a href="">下载APP</a>
+    </div>
+</div>

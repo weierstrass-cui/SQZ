@@ -1,0 +1,11 @@
+<div class="commonBox">
+    <div class="commonConBox">
+       <ul class="personInfoEditList">
+           <a ng-repeat="item in areaList" ng-class="{true:'infoEditActive', false:''}[item.id == userInfo.provinceId]" ng-href="{{item.param}}" ng-click="fn.setArea(item.id);">{{item.name}} <i class="iconInfo iconfont icon-xiangyou" > </i></a>
+        </ul>   
+    </div>
+    <div class="companyInfo">
+         <h4>2015上海简知网络科技有限公司</h4>
+         <a href="">下载APP</a>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="commonBox">
+    <div class="commonConBox">
+       <div class="editSearchBox">
+          <input type="text" ng-model="schoolFilterKey" placeholder="请输入学校名称关键字"></input>
+          <div class="iconInfo iconfont icon-sousuo editSearchBtn "></div>
+       </div>
+       <ul class="personInfoEditList infoEditListHeightLit">
+           <li ng-repeat="item in schoolList | filter:filter.schoolFilter" ng-class="{true:'infoEditActive', false:''}[item.id == userInfo.schoolId]" ng-click="fn.setSchool(item.id, item.name);">{{item.name}}</li>
+        </ul>
+    </div>
+    <div class="companyInfo">
+         <h4>2015上海简知网络科技有限公司</h4>
+         <a href="">下载APP</a>
+    </div>
+</div>
