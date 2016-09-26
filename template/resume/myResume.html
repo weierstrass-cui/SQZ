@@ -1,66 +1,123 @@
 <div class="commonBox">
-  <div class="resumeBox">
-    <div class="blankCardBox marginTop1">
-      <h3 class="blankCardTit">基本信息</h3>
-      <div class="jumpCardBox">
-        <a ng-href="#userNameEdit?name={{userInfo.name}}">
-            <h3>姓名</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.name}}</span>
-        </a>
-        <a ng-href="#resumeSexEdit?gender={{userInfo.gender}}">
-            <h3>性别</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.gender}}</span>
-        </a>
-        <a ng-href="#birthdayEdit?birthDay={{userInfo.birthDayFack}}">
-            <h3>生日</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.birthDayFack | date: 'yyyy-MM-dd'}}</span>
-        </a>
-        <a ng-href="#resumePhoneEdit?resumePhone={{userInfo.resumePhone}}">
-            <h3>电话</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.resumePhone}}</span>
-        </a>
-        <a ng-href="#emailEdit?email={{userInfo.email}}">
-            <h3>电子邮箱</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.email}}</span>
-        </a>
-        <a ng-href="#resumeSchoolSelEdit?load=school&schoolId={{userInfo.schoolId}}">
-            <h3>毕业院校</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.schoolName}}</span>
-        </a>
-        <a ng-href="#educationEdit?load=education&education={{userInfo.education}}">
-            <h3>学历</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.educationName}}</span>
-        </a>
-        <a ng-href="#politicalEdit?load=political&political={{userInfo.political}}">
-            <h3>政治面貌</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.political}}</span>
-        </a>
-        <a ng-href="#taskTypeEdit?load=taskType&taskType={{userInfo.taskType}}">
-            <h3>工作类型</h3>
-            <i class="iconInfo iconfont icon-xiangyou"> </i>
-            <span>{{userInfo.taskTypeName}}</span>
-        </a>
+    <div class="resumeEdit" ng-hide="isView">
+      <div class="resumeBox">
+        <div class="blankCardBox marginTop1">
+          <h3 class="blankCardTit">基本信息</h3>
+          <div class="jumpCardBox">
+            <a ng-href="#userNameEdit?name={{userInfo.name}}">
+                <h3>姓名</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.name}}</span>
+            </a>
+            <a ng-href="#resumeSexEdit?gender={{userInfo.gender}}">
+                <h3>性别</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.gender}}</span>
+            </a>
+            <a ng-href="#birthdayEdit?birthDay={{userInfo.birthDayFack}}">
+                <h3>生日</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.birthDayFack | date: 'yyyy-MM-dd'}}</span>
+            </a>
+            <a ng-href="#resumePhoneEdit?resumePhone={{userInfo.resumePhone}}">
+                <h3>电话</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.resumePhone}}</span>
+            </a>
+            <a ng-href="#emailEdit?email={{userInfo.email}}">
+                <h3>电子邮箱</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.email}}</span>
+            </a>
+            <a ng-href="#resumeSchoolSelEdit?load=school&schoolId={{userInfo.schoolId}}">
+                <h3>毕业院校</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.schoolName}}</span>
+            </a>
+            <a ng-href="#educationEdit?load=education&education={{userInfo.education}}">
+                <h3>学历</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.educationName}}</span>
+            </a>
+            <a ng-href="#politicalEdit?load=political&political={{userInfo.political}}">
+                <h3>政治面貌</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.political}}</span>
+            </a>
+            <a ng-href="#taskTypeEdit?load=taskType&taskType={{userInfo.taskType}}">
+                <h3>工作类型</h3>
+                <i class="iconInfo iconfont icon-xiangyou"> </i>
+                <span>{{userInfo.taskTypeName}}</span>
+            </a>
+          </div>
+        </div>
+        <div class="blankCardBox marginTop1">
+          <h3 class="blankCardTit">实践经历/工作经验</h3>
+          <div class="jumpCardBox">
+            <a ng-href="#experienceEdit?load=experience" class="full">{{userInfo.experience}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="bottomBtns">
+        <a href="javascript://" ng-click="fn.saveResume();" class="short">保 存</a>
+        <a href="javascript://" ng-click="fn.toggleViewResume();" class="long highLight">预 览</a>
       </div>
     </div>
-    <div class="blankCardBox marginTop1">
-      <h3 class="blankCardTit">实践经历/工作经验</h3>
-      <div class="jumpCardBox">
-        <a ng-href="#experienceEdit?load=experience" class="full">{{userInfo.experience}}</a>
+    <div class="resumeView" ng-show="isView">
+      <div class="resumeBox">
+        <div class="blankCardBox marginTop1">
+          <h3 class="blankCardTit">基本信息</h3>
+          <div class="jumpCardBox">
+            <a href="javascript://">
+                <h3>姓名</h3>
+                <span>{{userInfo.name}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>性别</h3>
+                <span>{{userInfo.gender}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>生日</h3>
+                <span>{{userInfo.birthDayFack | date: 'yyyy-MM-dd'}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>电话</h3>
+                <span>{{userInfo.resumePhone}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>电子邮箱</h3>
+                <span>{{userInfo.email}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>毕业院校</h3>
+                <span>{{userInfo.schoolName}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>学历</h3>
+                <span>{{userInfo.educationName}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>政治面貌</h3>
+                <span>{{userInfo.political}}</span>
+            </a>
+            <a href="javascript://">
+                <h3>工作类型</h3>
+                <span>{{userInfo.taskTypeName}}</span>
+            </a>
+          </div>
+        </div>
+        <div class="blankCardBox marginTop1">
+          <h3 class="blankCardTit">实践经历/工作经验</h3>
+          <div class="jumpCardBox">
+            <a href="javascript://" class="full">{{userInfo.experience}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="bottomBtns">
+        <a href="javascript://" ng-click="fn.toggleViewResume();" class="short">返回编辑</a>
+        <a href="javascript://" ng-click="fn.viewResume();" class="long highLight">发送邮箱</a>
       </div>
     </div>
-  </div>
-  <div class="bottomBtns">
-    <a href="javascript://" ng-click="fn.saveResume();" class="short">保 存</a>
-    <a href="javascript://" ng-click="fn.viewResume();" class="long highLight">预 览</a>
-  </div>
   <div class="companyInfo">
     <h4>2015上海简知网络科技有限公司</h4>
     <a href="">下载APP</a>

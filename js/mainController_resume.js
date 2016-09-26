@@ -11,10 +11,14 @@
 	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage','$publicService',
 		function($scope, $resumeService,$storage,$publicService){
 			var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume'));
-
+			$scope.isView = false;
 			$scope.fn = {
 				saveResume: function(){
-					if( resumeCache.isChange == '1' ){
+					var afterSave = function(){
+						$storage.removeLocalStorage('SQZ_resume');
+						$scope.commonFn.goLastView();
+					}
+					if( resumeCache && resumeCache.isChange == '1' ){
 						$resumeService.modifyResume({
 							user: resumeCache.resumeData,
 							sys: {
@@ -22,13 +26,15 @@
 							}
 						}, function(res){
 							$scope.commonFn.alertMsg(null, '您的简历保存成功', function(){
-								$storage.removeLocalStorage('SQZ_resume');
+								afterSave();
 							});
 						});
+					}else{
+						afterSave();
 					}
 				},
-				viewResume: function(){
-
+				toggleViewResume: function(){
+					$scope.isView = !$scope.isView;
 				}
 			}
 			if( !resumeCache ){
@@ -168,6 +174,10 @@
 					for(var i in $scope.userInfo){
 						if( !$scope.userInfo[i] ){
 							$scope.commonFn.alertMsg(null, keys[i]);
+							return;
+						}
+						if( i === 'resumePhone' && !$scope.vaildata.checkPhone($scope.userInfo[i]) ){
+							$scope.commonFn.alertMsg(null, '您输入的电话号码不正确');
 							return;
 						}
 						if( i === 'birthDayFack' ){

@@ -98,7 +98,8 @@ input,button,select,textarea{outline:none}
 .loginPsdError{width:80%;height: 40px;line-height: 40px;text-align: center; display: none; border: 2px dashed #eb9c27; color: #eb9c27; margin: 0 auto; font-size: 1.6rem; }
 
 /* userInfoEdit */
-.resumeBox{width:100%;height:calc(100% - 140px);margin-bottom:10px;overflow:scroll;}
+.resumeEdit, .resumeView{width:100%;height:100%;overflow:hidden;}
+.resumeBox{width:100%;height:calc(100% - 125px);margin-bottom:10px;overflow:scroll;}
 .blankCardBox{ width: 96%;padding: 8px 10px;overflow: hidden; margin:0 auto; background:#fff; display: block; border-radius: 8px; position: relative; }
 .blankCardDelete{ width: 30%; height: 100%; font-size: 1.8rem; line-height: 7rem; text-align: center; background:rgba(0,0,0,0.5);position: absolute; top: 0px; right:-30%; color: red; }
 .userHeadImg{width: 7rem;height: 7rem;border-radius: 50%;display: block; margin: 0 auto;}

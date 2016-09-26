@@ -1,14 +1,14 @@
 <div class="commonBox">
     <div class="commonConBox commonConBoxBg">
        <div class="userNameEditBox">
-          <textarea placeholder="请输入您的工作经历" ng-model="userInfo.experience"></textarea>
+          <textarea placeholder="请输入您的工作经历" maxlength="200" ng-model="userInfo.experience"></textarea>
        </div>
-       <!-- <div class="nameFontCountBox">
-          <div class="nameFontCount"><span>5</span>/<span>15</span></div>
-       </div> -->
+       <div class="nameFontCountBox">
+          <div class="nameFontCount"><span>{{userInfo.experience.length}}</span>/<span>200</span></div>
+       </div>
        <div class="personInfoEditBtn">
-           <button  ng-click="fn.cancel()">取 消</button>
-           <button  ng-click="fn.submit({experience: '请输入您的工作经历'})">确 认</button>
+           <button ng-click="fn.cancel()">取 消</button>
+           <button ng-click="fn.submit({experience: '请输入您的工作经历'})">确 认</button>
        </div> 
     </div>
     <div class="companyInfo">
