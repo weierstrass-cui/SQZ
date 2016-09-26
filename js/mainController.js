@@ -7,14 +7,7 @@
     // 登录
 	mainCtrl.controller('loginController', ['$scope', '$loginService','$storage',
 		function($scope,$loginService,$storage){
-			// $scope.loginList = {
-			// 	loginName:'13611944988',
-			// 	pass:'ZAQ!xsw2'
-			// };
-			$scope.loginList = {
-				loginName:'',
-				pass:''
-			};
+			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin');
 			$scope.fn = {
 				loginSubmit:function(){
 					if(!$scope.loginList.loginName || !$scope.loginList.pass){
@@ -28,12 +21,29 @@
 							terminal: $scope.commonFn.getDevice()
 						}
 					}, function(res){
+						if( $scope.rememberPass ){
+							$storage.setLocalStorage('SQZ_autoLogin', '1');
+							$storage.setLocalStorage('SQZ_userInfo', JSON.stringify($scope.loginList));
+						}
 						$storage.setLocalStorage('SQZ_token', res.token);
 						$storage.setLocalStorage('SQZ_userId', res.user.id);
 						$scope.commonFn.goView('userInfoEdit');
 					});
 				}
 			}
+			if( autoLogin === '1' ){
+				$scope.loginList = JSON.parse($storage.getLocalStorage('SQZ_userInfo'));
+				$scope.fn.loginSubmit();
+				return;
+			}
+			$scope.loginList = {
+				loginName:'',
+				pass:''
+			};
+			// $scope.loginList = {
+			// 	loginName:'13611944988',
+			// 	pass:'ZAQ!xsw2'
+			// };
 		}
 	]);
 	// 找回密码
