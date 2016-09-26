@@ -56,7 +56,7 @@
 				}
 				var postUrl = '';
 				if( typeof json !== 'object' ){
-					$rootScope.$broadcast('onError', {title: '系统错误',  message: '接口传递参数格式错误'});
+					$rootScope.$broadcast('onError', {title: '系统提示',  message: '接口传递参数格式错误'});
 					return;
 				}
 				postUrl = localUrl + fnName;
@@ -71,7 +71,7 @@
 					}
 				}
 				if(postUrl === ''){
-					$rootScope.$broadcast('onError', {title: '系统错误',  message: '参数出错'});
+					$rootScope.$broadcast('onError', {title: '系统提示',  message: '参数出错'});
 					return false;
 				}
 				
@@ -87,7 +87,7 @@
 					}else{
 						if( !isOnError ){
 							isOnError = true;
-							$rootScope.$broadcast('onError', {title: '系统错误',  message: res.result.err});
+							$rootScope.$broadcast('onError', {title: '系统提示',  message: res.result.err});
 							setTimeout(function(){
 								isOnError = false;
 							}, 3000);
@@ -98,7 +98,7 @@
 					}
 				})
 				.error(function(data, status){
-					$rootScope.$broadcast('onError', {title: '系统错误',  message: 'Oops~~ 你的数据被外星人劫持了~~'});
+					$rootScope.$broadcast('onError', {title: '系统提示',  message: 'Oops~~ 你的数据被外星人劫持了~~'});
 					if( showLoading !== false){
 						$rootScope.isLoadingData = false;
 					}

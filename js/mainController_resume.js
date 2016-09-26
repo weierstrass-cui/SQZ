@@ -21,7 +21,9 @@
 								token: $scope.commonFn.getToken()
 							}
 						}, function(res){
-							console.log(res);
+							$scope.commonFn.alertMsg(null, '您的简历保存成功', function(){
+								$storage.removeLocalStorage('SQZ_resume');
+							});
 						});
 					}
 				},
