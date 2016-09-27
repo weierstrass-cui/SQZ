@@ -106,17 +106,21 @@ input,button,select,textarea{outline:none}
 .userHeadName{ text-align: center;font-size: 1.4rem; color: #333; margin-top: 0.5rem;}
 .blankCardTit{width: 100%;height: 25px;line-height: 25px; font-size: 1.4rem; color: #f19611; border-bottom: 1px solid #f19611;}
 .jumpCardBox{width: 100%;}
-.jumpCardBox a{width: 100%;height: 3.8rem;line-height:3.8rem; padding-left: 3px; font-size: 1.6rem; display: block; overflow: hidden; border-bottom: 1px solid #ccc;}
+.jumpCardBox a{width: 100%;height: 3.2rem;line-height:3.2rem; padding-left: 3px; font-size: 1.6rem; display: block; overflow: hidden; border-bottom: 1px dashed #ccc;}
+.jumpCardBox a.full{width:100%;height:auto;line-height:26px;}
 .jumpCardBox a:last-child{border-bottom:0 none}
 .jumpCardBox a h3{width: 35%; height: 100%;  float: left; }
 .jumpCardBox a span{width: 55%; height: 100%; color: #f19715; text-align: right; float: right;}
 .jumpCardBox a i{width: 2rem; height: 100%; font-size: 1.8rem;float: right;color: #f19715; }
+
+.resumeView .jumpCardBox a h3{width:auto;color:#999}
+.resumeView .jumpCardBox a span{float:left;width:auto;text-align:left;color: #000}
 .personInfoEditList{ width: 100%;overflow: auto;}
 .personInfoEditList li,.personInfoEditList a{ width: 100%;height: 3.5rem; line-height: 3.5rem; display: block; border-bottom: 1px solid #a0a0a0; color:#727171; font-size: 1.4rem; padding-left: 1rem;}
 .personInfoEditList a{position: relative;}
 .personInfoEditList a i{width: 3.5rem;height: 3.5rem;line-height: 3.5rem; display: block; position: absolute; right: 0rem; top: 0rem; text-align: center;}
 .personInfoEditList li.infoEditActive,.personInfoEditList a.infoEditActive{color:#f19611;}
-.infoEditListHeightLit{max-height: calc(100% - 3.6rem - 4rem); }
+.infoEditListHeightLit{max-height: calc(100% - 7.6rem); }
 .infoEditListHeightMid{max-height: calc(100% - 4rem); }
 .personInfoEditBtn{ width: 100%; text-align: center; margin-top: 1rem;}
 .personInfoEditBtn button,.personInfoEditBtn a{padding: 0.4rem 2rem ;border: none;  background: #f39800;color: #fff;border-radius: 3px; margin: 0 1rem;font-size: 1.4rem;}
