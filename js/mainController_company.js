@@ -34,8 +34,35 @@
 							});
 						})($scope.jobList[i]);
 					}
-					console.log($scope.jobList);
 				});
+			});
+		}
+	]);
+
+	// 职位详情
+	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
+		function($scope, $companyService, $storage, $publicService){
+			$companyService.getJobDetail({
+				noName: '0/1',
+				sys: {
+					terminal: $scope.commonFn.getDevice()
+				}
+			}, function(res){
+				res.task.taskTypeName = taskTypeList[res.task.taskType].name;
+				res.task.miaoshu = '';
+				res.task.yaoqiu = '';
+				for(var i in res.task.descr ){
+					switch( res.task.descr[i].title ){
+						case '工作内容':
+							res.task.miaoshu += res.task.descr[i].value;
+							break;
+						case '工作要求':
+							res.task.yaoqiu += res.task.descr[i].value;
+							break;
+					}
+				}
+				$scope.taskInfo = res.task;
+				console.log($scope.taskInfo);
 			});
 		}
 	]);

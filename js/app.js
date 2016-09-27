@@ -63,18 +63,22 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			controller: 'resumeInfoEditController'
 		})
 		
+		.when('/companyDetails', {
+			templateUrl: 'template/companyDetails.html',
+			controller: 'companyDetailController'
+		}).when('/jobDetails', {
+			templateUrl: 'template/jobDetails.html',
+			controller: 'jobDetailController'
+		})
+
+
 
 		.when('/myWorkAxis', {
 			templateUrl: 'template/myWorkAxis.html'
-		}).when('/jobDetails', {
-			templateUrl: 'template/jobDetails.html'
 		}).when('/myCollection', {
 			templateUrl: 'template/myCollection.html',
 			controller: 'myCollectionController'
-		}).when('/companyDetails', {
-			templateUrl: 'template/companyDetails.html',
-			controller: 'companyDetailController'
-		});
+		})
 		//当找不到链接页面后跳转首页
 		$routeProvider.otherwise('/login');
 	}

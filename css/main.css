@@ -178,7 +178,7 @@ input,button,select,textarea{outline:none}
 .jobCompanyInfo i.aixin{ color: #8a8a8a; }
 .jobCompanyInfo label{ color: #727171; }
 .jobCompanyInfo span{ width: 2rem; height: 2rem; line-height: 2rem; float: right; color: #f29715;}
-.fontAreaBox{width: 100%; color: #727171; padding-top: 0.2rem;}
+.fontAreaBox{width: 100%; color: #727171; padding:1rem 0.2rem;}
 
 .jobDetailsCon{width:100%; height:calc(100% - 3.5rem ); overflow: auto;}
 .jobDetailsBtnBox{width:100%;height:3.5rem; overflow:hidden;background: #fff; color: #9fa0a0;}

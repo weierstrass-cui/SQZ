@@ -5,16 +5,16 @@
                 <div class="jobModelCardBox">
                       <div class="jobModelCardImg">
                            <div class="jobModelCardMask"></div>
-                           <img src="img/baobao.jpg">
-                           <div class="jobStyle">兼职</div>
+                           <span ng-class="['green', 'red', 'blue'][taskInfo.taskType]"></span>
+                           <div class="jobStyle">{{taskInfo.taskTypeName}}</div>
                       </div>
                       <div class="jobInfoBox">
-                          <h3>收银员</h3>
-                          <div><i class="iconInfo iconfont icon-shijian iconfontSize12"></i>2015.12.02～2015.12.25</div>
-                          <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>上海淮海路999号</div>
+                          <h3>{{taskInfo.name}}</h3>
+                          <div><i class="iconInfo iconfont icon-shijian iconfontSize12"></i>{{taskInfo.dateFrom | date:'yyyy.MM.dd'}} - {{taskInfo.dateTo | date:'yyyy.MM.dd'}}</div>
+                          <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>{{taskInfo.addr}}</div>
                       </div>
                       <div class="jobSalaryBox">
-                            <div class="jobSalary"> 180元/天</div>
+                            <div class="jobSalary"> {{taskInfo.salary}}元/天</div>
                             <div class="circleCreIcon circleCreIconLeft"><span></span></div>
                             <div class="circleCreIcon circleCreIconRight"><span></span></div>
                       </div>
@@ -22,23 +22,22 @@
             </div>
             <a href="#companyDetails" class="blankCardBox marginTop1">
                 <div class="jobCompanyInfo">
-                   <i  class="iconInfo iconfont icon-renzheng iconfontSize15"></i>
-                   <label>上海肯德基股份有限公司</label> 
-                   <i class="iconInfo iconfont icon-aixin  iconfontSize16 aixin"></i>
-
+                   <i class="iconInfo iconfont icon-renzheng iconfontSize15"></i>
+                   <label>{{taskInfo.corpName}}</label> 
+                   <!-- <i class="iconInfo iconfont icon-aixin iconfontSize16 aixin"></i> -->
                    <span class="iconInfo iconfont icon-xiangyou"></span> 
                 </div>
             </a>
             <div class="blankCardBox marginTop1">
-                <h3 class="blankCardTit"><i  class="iconInfo iconfont icon-bianji marginRight02"></i>职位描述</h3>
+                <h3 class="blankCardTit"><i class="iconInfo iconfont icon-bianji marginRight02"></i>职位描述</h3>
                 <div class="fontAreaBox">
-                    岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述
+                    {{taskInfo.miaoshu}}
                 </div>
             </div>
             <div class="blankCardBox marginTop1">
-                <h3 class="blankCardTit"><i  class="iconInfo iconfont icon-santiao marginRight02"></i>岗位要求</h3>
+                <h3 class="blankCardTit"><i class="iconInfo iconfont icon-santiao marginRight02"></i>岗位要求</h3>
                 <div class="fontAreaBox">
-                    岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述岗位描述
+                    {{taskInfo.yaoqiu}}
                 </div>
             </div>
         </div>

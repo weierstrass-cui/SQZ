@@ -8,6 +8,9 @@
 		return {
 			getCompanyDetail:function(obj, callback){
 				request.post('/task/v10/corpDetail', obj, callback);
+			},
+			getJobDetail:function(obj, callback){
+				request.post('/task/v10/viewTask', obj, callback);
 			}
 		}
 	}]);
