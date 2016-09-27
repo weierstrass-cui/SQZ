@@ -151,12 +151,17 @@ input,button,select,textarea{outline:none}
 .jobModelCardBox{width: 100%;height: 7rem;overflow: hidden; }
 .jobModelCardBox.jobModelCardDelete .blankCardDelete{right:0px;}
 
-.jobModelCardBox.jobModelCardBoxB{padding-top: 0.25rem; height: 7.5rem; border-bottom: 2px dashed #ccc;}
+.jobModelCardBox.jobModelCardBoxB{padding:10px 0 15px; height: auto; border-bottom: 2px dashed #ccc;}
 .jobModelCardBox .jobModelCardImg{ width: 6rem; float: left; height: 6rem; border: 1px solid #b5b5b6; border-radius: 50%; position: relative; }
 .jobModelCardImg .jobModelCardMask {width: 3rem; height: 6rem; background: #fff; position: absolute; top: -1px; right: -1px;}
-.jobModelCardImg img{ width: 5.3rem; height: 5.3rem; display: block; position: absolute;top: 0.35rem; left: 0.35rem; border-radius: 50%;  }
+.jobModelCardImg span{ color:#fff;width: 5.3rem; height: 5.3rem;line-height: 5.3rem;text-align: center; display: block; position: absolute;top: 0.35rem; left: 0.35rem; border-radius: 50%;  }
+
+.jobModelCardImg span.red{background: #fbda96}
+.jobModelCardImg span.green{background: #90d59b}
+.jobModelCardImg span.blue{background: #13cdfb}
+
 .jobModelCardImg .jobStyle{ color: #727171; font-size: 1.2rem; width: 3.5rem;  position: absolute;bottom:-1.2rem; left:3.5rem;}
-.jobSalaryBox{width: 7rem; height: 2.8rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
+.jobSalaryBox{width: 7rem; height: 2.8rem;margin-right:2px; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
 .jobSalary{ width: 5.5rem; height: 1.8rem;line-height: 1.8rem;font-size: 1.2rem;  margin: 0.4rem auto; background: #f8ca92; color: #fff;  text-align: center;}
 .jobSalaryBox .circleCreIcon{ width: 1rem; height: 1rem;background:#f19625; position: absolute;top: 0.85rem; border-radius: 50%;   }
 .circleCreIcon span{ width: 1rem; height: 1rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;   }

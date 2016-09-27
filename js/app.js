@@ -72,7 +72,8 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			templateUrl: 'template/myCollection.html',
 			controller: 'myCollectionController'
 		}).when('/companyDetails', {
-			templateUrl: 'template/companyDetails.html'
+			templateUrl: 'template/companyDetails.html',
+			controller: 'companyDetailController'
 		});
 		//当找不到链接页面后跳转首页
 		$routeProvider.otherwise('/login');
