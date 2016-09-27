@@ -45,6 +45,7 @@
 			var param = $scope.commonFn.getParamsFromUrl();
 			var enrollId = null;
 			$scope.isEnroll = false;
+			$scope.workTypeName = param.workTypeName;
 			$scope.fn = {
 				cancelEnroll: function(){
 					if( !enrollId ){
