@@ -3,7 +3,7 @@
         <div class="blankCardBox marginTop1">{{corpInfo.descr}}</div>
         <div class="blankCardBox marginTop1">
             <h3 class="blankCardTit"><i class="iconInfo iconfont icon-lingdai iconfontSize13"></i>该企业的其他职位</h3>
-            <div ng-repeat="item in jobList" class="jobModelCardBox jobModelCardBoxB">
+            <a ng-href="#jobDetails?jobId={{item.id}}" ng-repeat="item in jobList" class="jobModelCardBox jobModelCardBoxB">
                 <div class="jobModelCardImg">
                   <div class="jobModelCardMask"></div>
                   <span ng-class="['green', 'red', 'blue'][item.taskType]">{{item.workTypeName}}</span>
@@ -20,7 +20,7 @@
                     <div class="circleCreIcon circleCreIconLeft"><span></span></div>
                     <div class="circleCreIcon circleCreIconRight"><span></span></div>
                 </div>
-            </div>
+            </a>
         </div>
    </div>
    <div class="companyInfo">

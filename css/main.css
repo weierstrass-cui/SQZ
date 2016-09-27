@@ -151,7 +151,7 @@ input,button,select,textarea{outline:none}
 .jobModelCardBox{width: 100%;height: 7rem;overflow: hidden; }
 .jobModelCardBox.jobModelCardDelete .blankCardDelete{right:0px;}
 
-.jobModelCardBox.jobModelCardBoxB{padding:10px 0 15px; height: auto; border-bottom: 2px dashed #ccc;}
+.jobModelCardBox.jobModelCardBoxB{padding:10px 0 15px; height: auto; border-bottom: 2px dashed #ccc;display: block;}
 .jobModelCardBox .jobModelCardImg{ width: 6rem; float: left; height: 6rem; border: 1px solid #b5b5b6; border-radius: 50%; position: relative; }
 .jobModelCardImg .jobModelCardMask {width: 3rem; height: 6rem; background: #fff; position: absolute; top: -1px; right: -1px;}
 .jobModelCardImg span{ color:#fff;width: 5.3rem; height: 5.3rem;line-height: 5.3rem;text-align: center; display: block; position: absolute;top: 0.35rem; left: 0.35rem; border-radius: 50%;  }

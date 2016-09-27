@@ -42,8 +42,9 @@
 	// 职位详情
 	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
 		function($scope, $companyService, $storage, $publicService){
+			var param = $scope.commonFn.getParamsFromUrl();
 			$companyService.getJobDetail({
-				noName: '0/1',
+				noName: '0/' + param.jobId,
 				sys: {
 					terminal: $scope.commonFn.getDevice()
 				}
