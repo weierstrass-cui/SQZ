@@ -35,6 +35,17 @@
 				},
 				toggleViewResume: function(){
 					$scope.isView = !$scope.isView;
+				},
+				sendResumeAsMail: function(){
+					return;
+					$resumeService.sendResume({
+						noName: $storage.getLocalStorage('SQZ_userId'),
+						sys: {
+							terminal: $scope.commonFn.getDevice()
+						}
+					}, function(res){
+						console.log(res);
+					});
 				}
 			}
 			if( !resumeCache ){

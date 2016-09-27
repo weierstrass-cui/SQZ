@@ -11,6 +11,9 @@
 			},
 			modifyResume: function(obj, callback){
 				request.post('/userService/v10/resume', obj, callback);
+			},
+			sendResumeAsMail: function(obj, callback){
+				request.post('/task/v10/send/resumes', obj, callback);
 			}
 		}
 	}]);
