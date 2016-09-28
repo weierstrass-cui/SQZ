@@ -11,6 +11,12 @@
 			},
 			getJobDetail:function(obj, callback){
 				request.post('/task/v10/viewTask', obj, callback);
+			},
+			enroll:function(obj, callback){
+				request.post('/task/v10/enroll', obj, callback);
+			},
+			cancelEnroll:function(obj, callback){
+				request.post('/task/v10/cancelEnroll', obj, callback);
 			}
 		}
 	}]);

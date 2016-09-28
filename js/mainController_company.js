@@ -43,9 +43,45 @@
 	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
 		function($scope, $companyService, $storage, $publicService){
 			var param = $scope.commonFn.getParamsFromUrl();
-			var userId = $storage.getLocalStorage('SQZ_userId') || '0';
+			var enrollId = null;
+			$scope.isEnroll = false;
+			$scope.workTypeName = param.workTypeName;
+			$scope.fn = {
+				cancelEnroll: function(){
+					if( !enrollId ){
+						$scope.commonFn.alertMsg(null, '暂时不能取消报名，请稍后重试');
+						return;
+					}
+					$companyService.cancelEnroll({
+						noName: enrollId,
+						sys: {
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						$scope.commonFn.alertMsg(null, '已为您取消报名', function(){
+							$scope.isEnroll = false;
+						});
+					});
+				},
+				enroll: function(){
+					$companyService.enroll({
+						noName: param.jobId,
+						sys: {
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						enrollId = res.enroll.id;
+						$scope.isEnroll = true;
+						$scope.commonFn.alertMsg(null, '恭喜您报名成功');
+					});
+				},
+				setFavorite: function(){
+
+				}
+			}
+
 			$companyService.getJobDetail({
-				noName: userId + '/' + param.jobId,
+				noName: '0/' + param.jobId,
 				sys: {
 					terminal: $scope.commonFn.getDevice()
 				}
@@ -62,6 +98,10 @@
 							res.task.yaoqiu += res.task.descr[i].value;
 							break;
 					}
+				}
+				if( res.enrollList.length > 0 ){
+					$scope.isEnroll = true;
+					enrollId = res.enrollList[0].id;
 				}
 				$scope.taskInfo = res.task;
 			});
