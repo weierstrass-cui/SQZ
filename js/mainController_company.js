@@ -43,8 +43,9 @@
 	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
 		function($scope, $companyService, $storage, $publicService){
 			var param = $scope.commonFn.getParamsFromUrl();
+			var userId = $storage.getLocalStorage('SQZ_userId') || '0';
 			$companyService.getJobDetail({
-				noName: '0/' + param.jobId,
+				noName: userId + '/' + param.jobId,
 				sys: {
 					terminal: $scope.commonFn.getDevice()
 				}
@@ -63,7 +64,6 @@
 					}
 				}
 				$scope.taskInfo = res.task;
-				console.log($scope.taskInfo);
 			});
 		}
 	]);
