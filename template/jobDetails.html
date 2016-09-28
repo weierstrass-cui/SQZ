@@ -42,7 +42,8 @@
             </div>
         </div>
         <div class="jobDetailsBtnBox">
-             <a href="javascript://" ng-click="fn.setFavorite();"><i class="iconInfo iconfont icon-xingxing"></i>收藏该职位</a>
+             <a href="javascript://" ng-click="fn.setFavorite();" ng-show="!isFavorite"><i class="iconInfo iconfont icon-xingxing"></i>收藏该职位</a>
+             <a href="javascript://" ng-click="fn.unSetFavorite();" ng-show="isFavorite"><i class="iconInfo iconfont icon-xingxing"></i>取消收藏</a>
              <a href="javascript://" ng-click="fn.enroll();" ng-hide="isEnroll" class="baomingBtn">立即报名</a>
              <a href="javascript://" ng-click="fn.cancelEnroll();" ng-hide="!isEnroll" class="baomingBtn">取消报名</a>
         </div>

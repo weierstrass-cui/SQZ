@@ -4,6 +4,7 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
+	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
 	// 个人资料编辑所有页面通用
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage', '$userService','$publicService',
 		function($scope,$storage,$userService,$publicService){
@@ -97,13 +98,25 @@
 			}
 		}
 	]);
-	mainCtrl.controller('myCollectionController', ['$scope', 
-		function($scope){
-			$scope.fn = {
-				showRemoveBtn:function(e){
-					
+	mainCtrl.controller('myCollectionController', ['$scope', '$userService', '$storage',
+		function($scope, $userService, $storage){
+			$userService.getMyCollection({
+				condition: {
+					method: 'refresh',
+					id: $storage.getLocalStorage('SQZ_userId')
+				},
+				sys: {
+					offset: 0,
+					limit: 5,
+					terminal: $scope.commonFn.getDevice(),
+					token: $scope.commonFn.getToken()
 				}
-			}
+			}, function(res){
+				for(var i in res.favorites){
+					res.favorites[i].taskTypeName = taskTypeList[res.favorites[i].taskType].name;
+				}
+				$scope.favoritesList = res.favorites;
+			});
 		}
 	]);
 })();

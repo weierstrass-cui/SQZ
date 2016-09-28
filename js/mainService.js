@@ -52,6 +52,9 @@
 			},
 			modifyUser: function(obj, callback){
 				request.post('/userService/modify', obj, callback);
+			},
+			getMyCollection: function(obj, callback){
+				request.post('/userService/favoriteList', obj, callback);
 			}
 		}
 	}]);

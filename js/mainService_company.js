@@ -17,6 +17,12 @@
 			},
 			cancelEnroll:function(obj, callback){
 				request.post('/task/v10/cancelEnroll', obj, callback);
+			},
+			setFavorite:function(obj, callback){
+				request.post('/userService/favorite', obj, callback);
+			},
+			unSetFavorite:function(obj, callback){
+				request.post('/userService/cancelFavorite', obj, callback);
 			}
 		}
 	}]);

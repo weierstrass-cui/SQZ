@@ -43,8 +43,10 @@
 	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
 		function($scope, $companyService, $storage, $publicService){
 			var param = $scope.commonFn.getParamsFromUrl();
-			var enrollId = null;
+			var enrollId = null, taskType = null, favoriteId = null;
+			var userId = $storage.getLocalStorage('SQZ_userId') || '0';
 			$scope.isEnroll = false;
+			$scope.isFavorite = true;
 			$scope.workTypeName = param.workTypeName;
 			$scope.fn = {
 				cancelEnroll: function(){
@@ -76,16 +78,46 @@
 					});
 				},
 				setFavorite: function(){
-
+					$companyService.setFavorite({
+						map: {
+							taskType: taskType,
+							targetId: param.jobId
+						},
+						sys: {
+							terminal: $scope.commonFn.getDevice(),
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						favoriteId = res.favoriteId;
+						$scope.isFavorite = true;
+						$scope.commonFn.alertMsg(null, '收藏成功');
+					});
+				},
+				unSetFavorite: function(){
+					if( !favoriteId ){
+						$scope.commonFn.alertMsg(null, '暂时不能取消收藏，请稍后重试');
+						return;
+					}
+					$companyService.unSetFavorite({
+						noName: favoriteId,
+						sys: {
+							terminal: $scope.commonFn.getDevice(),
+							token: $scope.commonFn.getToken()
+						}
+					}, function(res){
+						$scope.isFavorite = false;
+						$scope.commonFn.alertMsg(null, '取消收藏成功');
+					});
 				}
 			}
 
 			$companyService.getJobDetail({
-				noName: '0/' + param.jobId,
+				noName: userId + '/' + param.jobId,
 				sys: {
 					terminal: $scope.commonFn.getDevice()
 				}
 			}, function(res){
+				taskType = res.task.taskType;
 				res.task.taskTypeName = taskTypeList[res.task.taskType].name;
 				res.task.miaoshu = '';
 				res.task.yaoqiu = '';
@@ -102,6 +134,12 @@
 				if( res.enrollList.length > 0 ){
 					$scope.isEnroll = true;
 					enrollId = res.enrollList[0].id;
+				}
+				
+				if( res.favoriteId == 0 ){
+					$scope.isFavorite = false;
+				}else{
+					favoriteId = res.favoriteId;
 				}
 				$scope.taskInfo = res.task;
 			});
