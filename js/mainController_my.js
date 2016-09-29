@@ -98,8 +98,10 @@
 			}
 		}
 	]);
-	mainCtrl.controller('myCollectionController', ['$scope', '$userService', '$storage',
-		function($scope, $userService, $storage){
+	mainCtrl.controller('myCollectionController', ['$scope', '$userService', '$storage', '$companyService',
+		function($scope, $userService, $storage, $companyService){
+			var favoritesCache = JSON.parse($storage.getLocalStorage('SQZ_favorites')) || {},
+				newFavoritesCache = {};
 			$userService.getMyCollection({
 				condition: {
 					method: 'refresh',
@@ -107,13 +109,36 @@
 				},
 				sys: {
 					offset: 0,
-					limit: 5,
+					limit: 99,
 					terminal: $scope.commonFn.getDevice(),
 					token: $scope.commonFn.getToken()
 				}
 			}, function(res){
 				for(var i in res.favorites){
-					res.favorites[i].taskTypeName = taskTypeList[res.favorites[i].taskType].name;
+					if( favoritesCache && favoritesCache['f' + res.favorites[i].targetId] ){
+						newFavoritesCache['f' + res.favorites[i].targetId] = res.favorites[i] = favoritesCache['f' + res.favorites[i].targetId];
+					}else{
+						(function(favoritObj){
+							$companyService.getJobDetail({
+								noName: $storage.getLocalStorage('SQZ_userId') + '/' + favoritObj.targetId,
+								sys: {
+									terminal: $scope.commonFn.getDevice()
+								}
+							}, function(taskRes){
+								favoritObj.taskTypeName = taskTypeList[favoritObj.taskType].name;
+								favoritObj.corpName = taskRes.task.corpName;
+								favoritObj.distName = taskRes.task.distName;
+								favoritObj.dateFrom = taskRes.task.dateFrom;
+								favoritObj.dateTo = taskRes.task.dateTo;
+								favoritObj.salary = taskRes.task.salary;
+								favoritObj.url = $scope.commonFn.buildParamsForUrl({
+									jobId: favoritObj.targetId
+								});
+								newFavoritesCache['f' + favoritObj.targetId] = favoritObj;
+								$storage.setLocalStorage('SQZ_favorites', JSON.stringify(newFavoritesCache));
+							});
+						})(res.favorites[i]);
+					}
 				}
 				$scope.favoritesList = res.favorites;
 			});
