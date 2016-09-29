@@ -98,16 +98,18 @@
 						$scope.commonFn.alertMsg(null, '暂时不能取消收藏，请稍后重试');
 						return;
 					}
-					$companyService.unSetFavorite({
-						noName: favoriteId,
-						sys: {
-							terminal: $scope.commonFn.getDevice(),
-							token: $scope.commonFn.getToken()
-						}
-					}, function(res){
-						$scope.isFavorite = false;
-						$scope.commonFn.alertMsg(null, '取消收藏成功');
-					});
+					$scope.commonFn.confirmMsg(null, '确定删除这条收藏吗？', function(){
+						$companyService.unSetFavorite({
+							noName: favoriteId,
+							sys: {
+								terminal: $scope.commonFn.getDevice(),
+								token: $scope.commonFn.getToken()
+							}
+						}, function(res){
+							$scope.isFavorite = false;
+							$scope.commonFn.alertMsg(null, '取消收藏成功');
+						});
+					}
 				}
 			}
 

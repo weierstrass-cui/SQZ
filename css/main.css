@@ -148,8 +148,9 @@ input,button,select,textarea{outline:none}
 .myWorkAxis .myWorkAxisFont{padding-left: 1rem; height: 2.6rem;line-height: 2.6rem; float: left; color: #f19715; font-size: 1.6rem; border-left: 1px solid #f19715; margin-left: 1rem;}
 .myWorkAxis .myWorkAxisDate{height: 2.6rem;line-height: 2.6rem; float: right; color: #727171; font-size: 1.4rem;}
 
-.jobModelCardBox{width: 100%;height: 7rem;overflow: hidden; }
+.jobModelCardBox{overflow: hidden; position:relative;}
 .jobModelCardBox.jobModelCardDelete .blankCardDelete{right:0px;}
+
 
 .jobModelCardBox.jobModelCardBoxB{padding:10px 0 15px; height: auto; border-bottom: 2px dashed #ccc;display: block;}
 .jobModelCardBox .jobModelCardImg{ width: 6rem; float: left; height: 6rem; border: 1px solid #b5b5b6; border-radius: 50%; position: relative; }
@@ -161,8 +162,18 @@ input,button,select,textarea{outline:none}
 .jobModelCardImg span.blue{background: #13cdfb}
 
 .jobModelCardImg .jobStyle{ color: #727171; font-size: 1.2rem; width: 3.5rem;  position: absolute;bottom:-1.2rem; left:3.5rem;}
+
+.jobModelCardBoxC{width:100%;overflow:hidden;position:relative;margin:1rem 0 0}
+.jobModelCardBoxC>a{transition: margin 1s linear;width:95%;margin:0 auto;overflow:hidden;background:#fff;border-radius:10px;display:block;padding:1rem 1rem 1.5rem;}
+.jobModelCardBoxC .jobModelCardImg{ width: 6rem; float: left; height: 6rem; border: 1px solid #b5b5b6; border-radius: 50%; position: relative; }
+.jobModelCardDelete>a{margin:0 0 0 -60px;}
+.jobModelCardBoxC .blankCardDelete{transition: right 0.2s linear;background:#fff;color:#eb9b25;width:45px;height:45px;right:-45px;line-height:43px;text-align:center;border-radius:50%;top:50%;margin-top:-22px;}
+.jobModelCardBoxC .blankCardDelete .iconfont{font-size:24px;}
+.jobModelCardDelete .blankCardDelete{right:20px;}
+
+
 .jobSalaryBox{width: 7rem; height: 2.8rem;margin-right:2px; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
-.jobSalary{ width: 5.5rem; height: 1.8rem;line-height: 1.8rem;font-size: 1.2rem;  margin: 0.4rem auto; background: #f8ca92; color: #fff;  text-align: center;}
+.jobSalary{ width: 5.5rem; height: 1.8rem;line-height: 1.8rem;font-size: 1.2rem;margin: 0.4rem auto; background: #f8ca92; color: #fff;  text-align: center;}
 .jobSalaryBox .circleCreIcon{ width: 1rem; height: 1rem;background:#f19625; position: absolute;top: 0.85rem; border-radius: 50%;   }
 .circleCreIcon span{ width: 1rem; height: 1rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;   }
 .circleCreIconLeft{left: -0.6rem;}

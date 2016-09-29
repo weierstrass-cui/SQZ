@@ -1,28 +1,25 @@
 <div class="commonBox">
    <div class="commonConBox commonConBoxBg" ng-click="fn.hideRemoveItem();">
-      <div class="blankCardBox marginTop1" ng-repeat="item in favoritesList">
-          <div class="jobModelCardBox" ng-swipe-left="isOnRemove = true" ng-class="{true:'jobModelCardDelete', false:''}[isOnRemove]">
-              <a ng-href="#jobDetails?{{item.url}}">
-                <div class="jobModelCardImg">
-                     <div class="jobModelCardMask"></div>
-                     <span ng-class="['green', 'red', 'blue'][item.taskType]"></span>
-                     <div class="jobStyle">{{item.taskTypeName}}</div>
-                </div>
-
-                <div class="jobInfoBox">
-                    <h3>{{item.title}}</h3>
-                    <div><i class="iconInfo iconfont icon-shouye iconfontSize12"></i>{{item.corpName}}</div>
-                    <div><i class="iconInfo iconfont icon-shijian iconfontSize12"></i>{{item.dateFrom | date:'yyyy.MM.dd'}} - {{item.dateTo | date:'yyyy.MM.dd'}}</div>
-                    <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>{{item.distName}}</div>
-                </div>
-                <div class="jobSalaryBox">
-                      <div class="jobSalary"> {{item.salary}}元/天</div>
-                      <div class="circleCreIcon circleCreIconLeft"><span></span></div>
-                      <div class="circleCreIcon circleCreIconRight"><span></span></div>
-                </div>
-              </a>
-              <div class="blankCardDelete">删除</div>
-          </div>
+      <div class="jobModelCardBoxC" ng-repeat="item in favoritesList | filter:fn.filter" ng-swipe-left="fn.showRemoveBtn(item);" ng-class="{true:'jobModelCardDelete', false:''}[item.isOnRemove]">
+          <a ng-href="{{item.url}}" ng-click="fn.checkIsRemove(item);">
+            <div class="jobModelCardImg">
+                 <div class="jobModelCardMask"></div>
+                 <span ng-class="['green', 'red', 'blue'][item.taskType]"></span>
+                 <div class="jobStyle">{{item.taskTypeName}}</div>
+            </div>
+            <div class="jobInfoBox">
+                <h3>{{item.title}}</h3>
+                <div><i class="iconInfo iconfont icon-shouye iconfontSize12"></i>{{item.corpName}}</div>
+                <div><i class="iconInfo iconfont icon-shijian iconfontSize12"></i>{{item.dateFrom | date:'yyyy.MM.dd'}} - {{item.dateTo | date:'yyyy.MM.dd'}}</div>
+                <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>{{item.distName}}</div>
+            </div>
+            <div class="jobSalaryBox">
+                <div class="jobSalary"> {{item.salary}}元/天</div>
+                <div class="circleCreIcon circleCreIconLeft"><span></span></div>
+                <div class="circleCreIcon circleCreIconRight"><span></span></div>
+            </div>
+          </a>
+          <div class="blankCardDelete" ng-click="fn.removeFavorit(item);"><i class="iconfont memberShipDetailCenIcon">&#xe606;</i></div>
       </div>
    </div>
    <div class="companyInfo">

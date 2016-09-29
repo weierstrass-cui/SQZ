@@ -101,7 +101,51 @@
 	mainCtrl.controller('myCollectionController', ['$scope', '$userService', '$storage', '$companyService',
 		function($scope, $userService, $storage, $companyService){
 			var favoritesCache = JSON.parse($storage.getLocalStorage('SQZ_favorites')) || {},
-				newFavoritesCache = {};
+				newFavoritesCache = {},
+				someOneOnRemove = false;
+			$scope.fn = {
+				filter: function(item){
+					return !item.isRemove || item.isRemove != 1;
+				},
+				showRemoveBtn: function(item){
+					item.isOnRemove = true;
+					someOneOnRemove = true;
+				},
+				checkIsRemove: function(item){
+					if( someOneOnRemove ){
+						var url = item.url;
+						item.url = '';
+						for(var i in $scope.favoritesList){
+							$scope.favoritesList[i].isOnRemove = false;
+						}
+						setTimeout(function(){
+							item.url = url;
+						}, 10);
+						someOneOnRemove = false;
+					}
+				},
+				hideRemoveItem: function(){
+					if( someOneOnRemove ){
+						for(var i in $scope.favoritesList){
+							$scope.favoritesList[i].isOnRemove = false;
+						}
+						someOneOnRemove = false;
+					}
+				},
+				removeFavorit: function(item){
+					$scope.commonFn.confirmMsg(null, '确定删除这条收藏吗？', function(){
+						$companyService.unSetFavorite({
+							noName: item.id,
+							sys: {
+								terminal: $scope.commonFn.getDevice(),
+								token: $scope.commonFn.getToken()
+							}
+						}, function(res){
+							item.isRemove = 1;
+						});
+					});
+				}
+			}
 			$userService.getMyCollection({
 				condition: {
 					method: 'refresh',
@@ -131,7 +175,7 @@
 								favoritObj.dateFrom = taskRes.task.dateFrom;
 								favoritObj.dateTo = taskRes.task.dateTo;
 								favoritObj.salary = taskRes.task.salary;
-								favoritObj.url = $scope.commonFn.buildParamsForUrl({
+								favoritObj.url = '#jobDetails?' + $scope.commonFn.buildParamsForUrl({
 									jobId: favoritObj.targetId
 								});
 								newFavoritesCache['f' + favoritObj.targetId] = favoritObj;
