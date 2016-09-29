@@ -109,7 +109,7 @@
 							$scope.isFavorite = false;
 							$scope.commonFn.alertMsg(null, '取消收藏成功');
 						});
-					}
+					});
 				}
 			}
 

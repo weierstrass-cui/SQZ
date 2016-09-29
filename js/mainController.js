@@ -27,7 +27,7 @@
 						}
 						$storage.setLocalStorage('SQZ_token', res.token);
 						$storage.setLocalStorage('SQZ_userId', res.user.id);
-						$scope.commonFn.goView('userInfoEdit');
+						$scope.commonFn.goView('/userInfoEdit', true);
 					});
 				}
 			}
@@ -51,11 +51,6 @@
 		function($scope, $publicService, $getBackPsdService, $interval){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
-			$scope.submitList = {
-				phone:'',
-				pass:'',
-				captcha:''
-			}
 			$scope.fn = {
 				getCode:function(){
 					if( $scope.isChange ){
@@ -104,14 +99,16 @@
 						return false;
 					};
 					//提交信息接口
-					$getBackPsdService.getBackPsd($scope.submitList, function(res){
-						$scope.commonFn.alertMsg(null, "密码设置成功");
-						$location.path('login');
+					$getBackPsdService.getBackPsd({
+						map:$scope.submitList,
+						sys: {}
+					}, function(res){
+						$scope.commonFn.alertMsg(null, "密码设置成功", function(){
+							$scope.commonFn.goView('/login', true);
+						});
 					});
 				}
-
 			}
-			
 		}
 	]);
 	// 注册
@@ -174,14 +171,12 @@
 					};
 					
 					//提交信息接口
-					// /userService/reg/user;phone=13585948849;invitedCode=;captcha=1628;channel=self;terminal=ios/sys
 					$registerService.registerRecommend({
 						user: $scope.submitList,
 						sys: {}
 					}, function(res){
 						$scope.commonFn.alertMsg(null, "注册成功");
-						$location.path('login');
-						//$scope.commonFn.goView('/login');
+						$scope.commonFn.goView('/login', true);
 					});	
 				}
 			}
