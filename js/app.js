@@ -71,10 +71,9 @@ angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFile
 			controller: 'jobDetailController'
 		})
 
-
-
 		.when('/myWorkAxis', {
-			templateUrl: 'template/myWorkAxis.html'
+			templateUrl: 'template/myWorkAxis.html',
+			controller: 'myWorkAxisController'
 		}).when('/myCollection', {
 			templateUrl: 'template/myCollection.html',
 			controller: 'myCollectionController'

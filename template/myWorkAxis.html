@@ -1,42 +1,10 @@
 <div class="commonBox">
     <div class="commonConBox commonConBoxBg">
-        <div class="myWorkAxis marginTop1">
-            <span class="jianzhi">兼职</span>
-            <div class="myWorkAxisFont">收银员</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="xiaozhao">兼职</span>
-            <div class="myWorkAxisFont">星巴克咖啡师</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="shixi">兼职</span>
-            <div class="myWorkAxisFont">收银员</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="zhaoshi">兼职</span>
-            <div class="myWorkAxisFont">收银员</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="xiaozhao">兼职</span>
-            <div class="myWorkAxisFont">星巴克咖啡师</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="shixi">兼职</span>
-            <div class="myWorkAxisFont">收银员</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        <div class="myWorkAxis marginTop1">
-            <span class="zhaoshi">兼职</span>
-            <div class="myWorkAxisFont">收银员</div>
-            <div class="myWorkAxisDate" >2016年8月20号</div>
-        </div>
-        
-
+        <a ng-href="{{item.url}}" class="myWorkAxis marginTop1" ng-repeat="item in myTimeList">
+            <span ng-class="['jianzhi', 'shixi', 'zhaoshi'][item.taskType]">{{item.taskTypeName}}</span>
+            <div class="myWorkAxisFont">{{item.taskName}}</div>
+            <div class="myWorkAxisDate">{{item.newat | date:'yyyy年MM月dd日'}}</div>
+        </a>
     </div>
     <div class="companyInfo">
          <h4>2015上海简知网络科技有限公司</h4>

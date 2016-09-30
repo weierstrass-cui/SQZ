@@ -98,6 +98,7 @@
 			}
 		}
 	]);
+	// 我的收藏
 	mainCtrl.controller('myCollectionController', ['$scope', '$userService', '$storage', '$companyService',
 		function($scope, $userService, $storage, $companyService){
 			var favoritesCache = JSON.parse($storage.getLocalStorage('SQZ_favorites')) || {},
@@ -185,6 +186,51 @@
 					}
 				}
 				$scope.favoritesList = res.favorites;
+			});
+		}
+	]);
+	// 我的实兼轴
+	mainCtrl.controller('myWorkAxisController', ['$scope', '$userService', '$storage', '$companyService',
+		function($scope, $userService, $storage, $companyService){
+			var myListCache = JSON.parse($storage.getLocalStorage('SQZ_myTimeList')) || {},
+				newMyListCache = {};
+			$userService.getMySQZ({
+				condition: {
+					id: 0,
+					method: 'load'
+				},
+				sys:{
+					offset: 0,
+					limit: 99,
+					token: $scope.commonFn.getToken(),
+					terminal: $scope.commonFn.getDevice()
+				}
+			}, function(res){
+				for(var i in res.myTimeList){
+					if( myListCache && myListCache['l' + res.myTimeList[i].id] ){
+						newMyListCache['l' + res.myTimeList[i].id] = res.myTimeList[i] = myListCache['l' + res.myTimeList[i].id];
+					}else{
+						(function(myListObj){
+							$companyService.getJobDetail({
+								noName: $storage.getLocalStorage('SQZ_userId') + '/' + myListObj.taskId,
+								sys: {
+									terminal: $scope.commonFn.getDevice()
+								}
+							}, function(taskRes){
+								myListObj.taskTypeName = taskTypeList[myListObj.taskType].name;
+								myListObj.taskName = taskRes.task.name;
+								myListObj.url = '#jobDetails?' + $scope.commonFn.buildParamsForUrl({
+									jobId: myListObj.taskId
+								});
+								newMyListCache['l' + myListObj.id] = myListObj;
+								$storage.setLocalStorage('SQZ_myTimeList', JSON.stringify(newMyListCache));
+							});
+						})(res.myTimeList[i]);
+					}
+					
+					res.myTimeList[i].taskTypeName = taskTypeList[res.myTimeList[i].taskType].name;
+				}
+				$scope.myTimeList = res.myTimeList;
 			});
 		}
 	]);

@@ -55,6 +55,9 @@
 			},
 			getMyCollection: function(obj, callback){
 				request.post('/userService/favoriteList', obj, callback);
+			},
+			getMySQZ: function(obj, callback){
+				request.post('/task/v10/myTimeList', obj, callback);
 			}
 		}
 	}]);

@@ -139,7 +139,7 @@ input,button,select,textarea{outline:none}
 .bottomBtns a.long{width:60%}
 .bottomBtns .highLight{background:#f29725;color:#fff}
 
-.myWorkAxis{ width: 96%;padding:8px 15px;overflow: hidden; margin:0 auto; background:#fff; border-radius: 8px; }
+.myWorkAxis{ width: 96%;padding:8px 15px;overflow: hidden; margin:0 auto; background:#fff; border-radius: 8px;display:block; }
 .myWorkAxis span{width: 3rem; height: 1.6rem;line-height: 1.6rem; float: left; margin-top: 0.5rem; color: #fff; font-size: 1.2rem; text-align: center;}
 .myWorkAxis span.jianzhi{ background: #22ac38;}
 .myWorkAxis span.xiaozhao{ background: #13cdfb;}
@@ -148,7 +148,7 @@ input,button,select,textarea{outline:none}
 .myWorkAxis .myWorkAxisFont{padding-left: 1rem; height: 2.6rem;line-height: 2.6rem; float: left; color: #f19715; font-size: 1.6rem; border-left: 1px solid #f19715; margin-left: 1rem;}
 .myWorkAxis .myWorkAxisDate{height: 2.6rem;line-height: 2.6rem; float: right; color: #727171; font-size: 1.4rem;}
 
-.jobModelCardBox{overflow: hidden; position:relative;}
+.jobModelCardBox{overflow: hidden; position:relative;height:7rem}
 .jobModelCardBox.jobModelCardDelete .blankCardDelete{right:0px;}
 
 
