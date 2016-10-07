@@ -1,7 +1,7 @@
 <div class="commonBox">
     <div class="commonConBox commonConBoxBg">
        <div class="userNameEditBox">
-          <input type="date" placeholder="请输入您的生日" ng-model="userInfo.birthDayFack" />
+          <input type="date" placeholder="请输入您的生日" ng-class="{true:'', false:'emptyDate'}[userInfo.birthDayFack]" ng-model="userInfo.birthDayFack" />
        </div>
        <!-- <div class="nameFontCountBox">
           <div class="nameFontCount"><span>5</span>/<span>15</span></div>

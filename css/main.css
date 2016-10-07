@@ -9,6 +9,10 @@ ul,li{list-style:none;}
 input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
 input,button,select,textarea{outline:none}
 
+input[type="text"],input[type="tel"],input[type="date"], input.localDateTime{-webkit-appearance:none;background:none}
+input[type="date"].emptyDate:before, input.localDateTime.emptyDate:before{ content: attr(placeholder);color:#c6c6c6;}
+
+
 .view-container {
     position: relative;
 }
