@@ -69,12 +69,11 @@
 							});
 						}
 					}
-					alert(new Date(res.user.birthDay));
 					var resumeData = {
 						name: res.user.name,
 						gender: res.user.gender,
 						birthDay: res.user.birthDay,
-						birthDayFack: res.user.birthDay ? new Date(res.user.birthDay) : '',
+						birthDayFack: res.user.birthDay ? res.user.birthDay.split(' ')[0] : '',
 						resumePhone: res.user.resumePhone,
 						email: res.user.email,
 						schoolId: res.user.schoolId,
@@ -100,8 +99,7 @@
 					$scope.userInfo = resumeData;
 				});
 			}else{
-				alert(resumeCache.resumeData.birthDay);
-				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? new Date(resumeCache.resumeData.birthDay) : '',
+				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? resumeCache.resumeData.birthDay.split(' ')[0] : '';
 				$scope.userInfo = resumeCache.resumeData;
 			}
 		}
