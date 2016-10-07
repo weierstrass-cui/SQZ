@@ -1,6 +1,5 @@
 (function(){
 	var localUrl = 'http://apptest.54jeunesse.com:8088/part';
-	/*var localUrl = 'http://120.26.122.173:8000/app';*/
 
 	// 重写 Date的toJSON方法，满足后台对日期格式的需求
 	// 1990-12-31T00:00:00Z
@@ -92,7 +91,11 @@
 					}else{
 						if( !isOnError ){
 							isOnError = true;
-							$rootScope.$broadcast('onError', {title: '系统提示',  message: res.result.err});
+							if( res.result.err === 'unknow security problem.'){
+								$rootScope.$broadcast('onError', {title: '系统提示',  message: '您尚未登录，请先登录或注册！', redirt: 'login'});
+							}else{
+								$rootScope.$broadcast('onError', {title: '系统提示',  message: res.result.err});
+							}
 							setTimeout(function(){
 								isOnError = false;
 							}, 3000);

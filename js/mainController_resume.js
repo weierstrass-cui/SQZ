@@ -69,7 +69,7 @@
 							});
 						}
 					}
-
+					alert(new Date(res.user.birthDay));
 					var resumeData = {
 						name: res.user.name,
 						gender: res.user.gender,
@@ -100,6 +100,7 @@
 					$scope.userInfo = resumeData;
 				});
 			}else{
+				alert(resumeCache.resumeData.birthDay);
 				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? new Date(resumeCache.resumeData.birthDay) : '',
 				$scope.userInfo = resumeCache.resumeData;
 			}
