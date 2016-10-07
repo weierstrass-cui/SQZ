@@ -10,7 +10,8 @@
 	// 我的简历
 	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage','$publicService',
 		function($scope, $resumeService,$storage,$publicService){
-			var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume'));
+			var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume')),
+				schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));;
 			$scope.isView = false;
 			$scope.fn = {
 				saveResume: function(){
@@ -56,7 +57,6 @@
 					}
 				}, function(res){
 					if( res.user.schoolId ){
-						var schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));
 						if( schoolCache && schoolCache.id == res.user.schoolId ){
 							res.user.schoolName = schoolCache.name;
 						}else{
@@ -100,6 +100,18 @@
 				});
 			}else{
 				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? resumeCache.resumeData.birthDay.split(' ')[0] : '';
+				if( schoolCache && schoolCache.id == resumeCache.resumeData.schoolId ){
+					resumeCache.resumeData.schoolName = schoolCache.name;
+				}else{
+					$publicService.getOneSchool({
+						noName: resumeCache.resumeData.schoolId,
+						sys:{}
+					},function(schoolRES){
+						resumeCache.resumeData.schoolName = schoolRES.school.name;
+						$storage.setLocalStorage('SQZ_school', JSON.stringify({id: resumeCache.resumeData.schoolId, name: schoolRES.school.name}));
+					});
+				}
+
 				$scope.userInfo = resumeCache.resumeData;
 			}
 		}
