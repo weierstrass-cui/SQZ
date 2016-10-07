@@ -27,7 +27,8 @@
 						}
 						$storage.setLocalStorage('SQZ_token', res.token);
 						$storage.setLocalStorage('SQZ_userId', res.user.id);
-						$scope.commonFn.goView('/userInfoEdit', true);
+						location.href = '#/userInfoEdit?userId=' + res.user.id;
+						// $scope.commonFn.goView('/userInfoEdit', true);
 					});
 				}
 			}
@@ -186,7 +187,8 @@
 	// 用户资料
 	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService','$publicService',
 		function($scope, $storage, $userService,$publicService){
-			var areaName = [];
+			var areaName = [],
+				param = $scope.commonFn.getParamsFromUrl();
 			var getAreaName = function(areaId, callback){
 				$publicService.getOneArea({
 					noName: areaId,
@@ -202,7 +204,9 @@
 					name: name
 				}));
 			}
+
 			$userService.getUser({
+				noName: param.userId || $storage.getLocalStorage('SQZ_userId'),
 				sys: {
 					token: $scope.commonFn.getToken(),
 					terminal: $scope.commonFn.getDevice()

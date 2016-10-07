@@ -41,14 +41,13 @@
 			registerRecommend:function(obj, callback){
 				request.post('/userService/regWithPass', obj, callback, {ignorLogin: true});
 			}
-
 		}
 	}]);
 	// 个人资料相关接口
 	mainCtrl.factory('$userService', ['$request', function(request){
 		return {
 			getUser:function(obj, callback){
-				request.post('/userService/showSelf', obj, callback);
+				request.post('/userService/show', obj, callback);
 			},
 			modifyUser: function(obj, callback){
 				request.post('/userService/modify', obj, callback);
