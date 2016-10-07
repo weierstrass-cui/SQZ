@@ -14,10 +14,10 @@
 				schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));;
 			$scope.isView = false;
 			$scope.fn = {
-				saveResume: function(){
+				saveResume: function(keepPage){
 					var afterSave = function(){
 						$storage.removeLocalStorage('SQZ_resume');
-						$scope.commonFn.goLastView();
+						if( !keepPage ) $scope.commonFn.goLastView();
 					}
 					if( resumeCache && resumeCache.isChange == '1' ){
 						$resumeService.modifyResume({

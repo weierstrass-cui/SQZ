@@ -190,7 +190,7 @@ var mainCtrl = '';
 					var myResume = JSON.parse($storage.getLocalStorage('SQZ_resume'));
 					if( myResume && myResume.isChange == '1' ){
 						$scope.commonFn.confirmMsg(null, '您的简历已经修改，是否立即保存？', function(){
-							last.scope.fn.saveResume();
+							last.scope.fn.saveResume(true);
 						});
 					}
 				}
