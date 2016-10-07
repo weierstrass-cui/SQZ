@@ -111,11 +111,17 @@
 			var param = $scope.commonFn.getParamsFromUrl();
 			$scope.userInfo = param;
 			if( $scope.userInfo.load == 'school' ){
-				$publicService.getSchoolList({
-					sys:{}
-				}, function(res){
-					$scope.schoolList = res.school;
-				});
+				var schoolCache = JSON.parse($storage.getLocalStorage('SQZ_schoolList')) || [];
+				if( schoolCache.length > 0 ){
+					$scope.schoolList = schoolCache;
+				}else{
+					$publicService.getSchoolList({
+						sys:{}
+					}, function(res){
+						$scope.schoolList = res.school;
+						$storage.setLocalStorage('SQZ_schoolList', JSON.stringify($scope.schoolList));
+					});
+				}
 			}else if( $scope.userInfo.load == 'education' ){
 				$scope.educationList = educationList;
 			}else if( $scope.userInfo.load == 'political' ){

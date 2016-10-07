@@ -69,7 +69,8 @@ input,button,select,textarea{outline:none}
 .container{width: 100%;height: 100%; overflow: auto;}
 
 .commonBox{width: 100%;height: 100%;position: relative; background:#efeff0; font-size: 1.4rem;overflow:hidden;}
-.commonConBox{width: 100%;height:91%; background:#fff; position: absolute; top: 0px;left: 0px; overflow:auto; }
+.commonConBox{width: 100%;height:calc(100% - 64px); background:#fff; position: absolute; top: 0px;left: 0px; overflow:auto; }
+.commonConBoxLong{height:100%;}
 .commonConBoxBg{background:#efeff0; border-bottom: 1px solid #ccc;}
 .companyInfo{width: 100%;height:65px;border-top: 1px solid #efeff0; background:#efeff0;text-align: center;  position: absolute; bottom: 0px;left: 0px;}
 .companyInfo h4{width: 100%;height:1.8rem;font-size: 1rem; color: #7e7d7d;margin-top:1%;}
@@ -182,7 +183,7 @@ input,button,select,textarea{outline:none}
 .circleCreIconRight span{left:1px;}
 .jobInfoBox{width: calc(100% - 13.5rem);height: 100%; float: left;}
 .jobInfoBox h3{ color:#727171; font-size: 1.4rem;line-height: 1.6rem; padding-left: 0.2rem;}
-.jobInfoBox div{ color:#9fa0a0; font-size: 1.3rem; height: 1.5rem; line-height: 1.5rem;}
+.jobInfoBox div{ color:#9fa0a0; font-size: 1.3rem;height: 1.5rem;white-space:nowrap;overflow:hidden;text-overflow: ellipsis; line-height: 1.5rem;}
 
 .jobCompanyInfo{ display: block;width: 100%; }
 .jobCompanyInfo i{ color: #f29715; }
@@ -228,9 +229,10 @@ input,button,select,textarea{outline:none}
     .jobModelCardBox.jobModelCardBoxB{padding-top: 0.25rem; height: 6.5rem;}
     .jobModelCardBox .jobModelCardImg{ width: 5rem; float: left; height: 5rem;}
     .jobModelCardImg .jobModelCardMask {width: 2.5rem; height: 5rem;}
+    .jobModelCardImg span{ color:#fff;width: 4rem; height: 4rem;line-height: 4rem; }
     .jobModelCardImg img{ width: 4.3rem; height: 4.3rem; position: absolute;top: 0.25rem; left: 0.25rem; }
     .jobModelCardImg .jobStyle{ font-size: 1.2rem; width: 3.5rem;font-size: 1.2rem;  position: absolute;bottom:-1.2rem; left:2.5rem;}
-    
+    .jobModelCardBoxC .jobModelCardImg{width:5rem;height:5rem;}
 
     .jobSalaryBox{width: 6rem; height: 2.4rem; border:1px solid #f19625; float: right; margin-top: 1.6rem; position: relative;}
     .jobSalary{ width: 4.5rem; height: 1.6rem;line-height: 1.6rem;font-size: 1rem;  margin: 0.3rem auto; background: #f8ca92; color: #fff;  text-align: center;}
@@ -238,9 +240,9 @@ input,button,select,textarea{outline:none}
     .circleCreIcon span{ width: 0.8rem; height: 0.8rem; display: block; background:#fff; position: absolute;top: 0rem; border-radius: 50%;z-index:10;}
     .circleCreIconLeft{left: -0.6rem;}
     .circleCreIconRight{right: -0.6rem;}
-    .jobInfoBox{width: calc(100% - 11rem);height: 100%; float: left;}
+    .jobInfoBox{width: calc(100% - 12rem);height: 100%; float: left;}
     .jobInfoBox h3{ color:#727171; font-size: 1.4rem;line-height: 1.4rem;  padding-left: 0.2rem;  }
-    .jobInfoBox div{ color:#9fa0a0; font-size: 1.2rem; height: 1.2rem;line-height: 1.2rem; }
+    .jobInfoBox div{ color:#9fa0a0; font-size: 1.2rem;height:1.2rem;line-height: 1.2rem; }
     .jobInfoBox div i{font-size: 1.2rem;}
     .jobInfoBox div span{font-size: 1.2rem;}
 }

@@ -7,10 +7,10 @@
 	mainCtrl.factory('$companyService', ['$request', function(request){
 		return {
 			getCompanyDetail:function(obj, callback){
-				request.post('/task/v10/corpDetail', obj, callback);
+				request.post('/task/v10/corpDetail', obj, callback, {ignorLogin: true});
 			},
 			getJobDetail:function(obj, callback){
-				request.post('/task/v10/viewTask', obj, callback);
+				request.post('/task/v10/viewTask', obj, callback, {ignorLogin: true});
 			},
 			enroll:function(obj, callback){
 				request.post('/task/v10/enroll', obj, callback);

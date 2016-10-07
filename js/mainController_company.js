@@ -6,16 +6,19 @@
 	}
 	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
 	// 公司详情
-	mainCtrl.controller('companyDetailController', ['$scope', '$companyService', '$storage', '$publicService',
-		function($scope, $companyService, $storage, $publicService){
-			var geolocation = new BMap.Geolocation(),
-				param = $scope.commonFn.getParamsFromUrl();
-			geolocation.getCurrentPosition(function(pos){
+	mainCtrl.controller('companyDetailController', ['$scope', '$companyService', '$storage',
+		function($scope, $companyService, $storage){
+			// var geolocation = new BMap.Geolocation();
+			var param = $scope.commonFn.getParamsFromUrl();
+			var userId = $storage.getLocalStorage('SQZ_userId') || '0',
+				jobListCache = JSON.parse($storage.getLocalStorage('SQZ_jobList')) || {};
+			// geolocation.getCurrentPosition(function(pos){
 				$companyService.getCompanyDetail({
 					condition: {
-						userId: $storage.getLocalStorage('SQZ_userId'),
+						userId: userId,
 						corpId: param.corpId,
-						pt: pos.latitude + ',' + pos.longitude
+						// pt: pos.latitude + ',' + pos.longitude
+						pt: '31.22,121.48'
 					},
 					sys: {
 						terminal: $scope.commonFn.getDevice()
@@ -24,18 +27,27 @@
 					$scope.corpInfo = res.corp;
 					$scope.jobList = res.search.result.query.response.docs;
 					for(var i in $scope.jobList){
-						$scope.jobList[i].taskTypeName = taskTypeList[$scope.jobList[i].taskType].name;
-						(function(obj){
-							$publicService.getOneArea({
-								noName: obj.distId,
-								sys:{}
-							},function(area){
-								obj.distName = area.region.name;
-							});
-						})($scope.jobList[i]);
+						if( jobListCache && jobListCache['j' + $scope.jobList[i].id] ){
+							$scope.jobList[i] = jobListCache['j' + $scope.jobList[i].id];
+						}else{
+							$scope.jobList[i].taskTypeName = taskTypeList[$scope.jobList[i].taskType].name;
+							(function(obj){
+								$companyService.getJobDetail({
+									noName: userId + '/' + obj.id,
+									sys: {
+										terminal: $scope.commonFn.getDevice()
+									}
+								}, function(taskRes){
+									obj.distName = taskRes.task.distName;
+									obj.addr = taskRes.task.addr;
+									jobListCache['j' + obj.id] = obj;
+									$storage.setLocalStorage('SQZ_jobList', JSON.stringify(jobListCache));
+								});
+							})($scope.jobList[i]);
+						}
 					}
 				});
-			});
+			// });
 		}
 	]);
 

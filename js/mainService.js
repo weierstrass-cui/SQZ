@@ -6,40 +6,40 @@
 	mainCtrl.factory('$publicService', ['$request', function(request){
 		return {
 			getCode: function(obj, callback){
-				request.post('/userService/getCaptcha', obj, callback);
+				request.post('/userService/getCaptcha', obj, callback, {ignorLogin: true});
 			},
 			getAreaList: function(obj, callback){
-				request.post('/regionService/children', obj, callback);
+				request.post('/regionService/children', obj, callback, {ignorLogin: true});
 			},
 			getOneArea: function(obj, callback){
-				request.post('/regionService/find', obj, callback);
+				request.post('/regionService/find', obj, callback, {ignorLogin: true});
 			},
 			getSchoolList: function(obj, callback){
-				request.post('/schoolService/findAll', obj, callback);
+				request.post('/schoolService/findAll', obj, callback, {ignorLogin: true});
 			},
 			getOneSchool: function(obj, callback){
-				request.post('/schoolService/find', obj, callback);
+				request.post('/schoolService/find', obj, callback, {ignorLogin: true});
 			}
 		}
 	}]);
 	mainCtrl.factory('$loginService', ['$request', function(request){
 		return {
 			login: function(obj, callback){
-				request.post('/userService/login', obj, callback);
+				request.post('/userService/login', obj, callback, {ignorLogin: true});
 			}
 		}
 	}]);
 	mainCtrl.factory('$getBackPsdService', ['$request', function(request){
 		return {
 			getBackPsd: function(obj, callback){
-				request.post('/userService/v10/resetPass', obj, callback);
+				request.post('/userService/v10/resetPass', obj, callback, {ignorLogin: true});
 			}
 		}
 	}]);
 	mainCtrl.factory('$registerService', ['$request', function(request){
 		return {
 			registerRecommend:function(obj, callback){
-				request.post('/userService/regWithPass', obj, callback);
+				request.post('/userService/regWithPass', obj, callback, {ignorLogin: true});
 			}
 
 		}

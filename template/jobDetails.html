@@ -11,10 +11,10 @@
                       <div class="jobInfoBox">
                           <h3>{{taskInfo.name}}</h3>
                           <div><i class="iconInfo iconfont icon-shijian iconfontSize12"></i>{{taskInfo.dateFrom | date:'yyyy.MM.dd'}} - {{taskInfo.dateTo | date:'yyyy.MM.dd'}}</div>
-                          <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>{{taskInfo.addr}}</div>
+                          <div><i class="iconInfo iconfont icon-dizhi iconfontSize12"></i>{{taskInfo.distName}} - {{taskInfo.addr}}</div>
                       </div>
                       <div class="jobSalaryBox">
-                            <div class="jobSalary"> {{taskInfo.salary}}元/天</div>
+                            <div class="jobSalary"> {{taskInfo.salary}}元/{{taskInfo.payUnit}}</div>
                             <div class="circleCreIcon circleCreIconLeft"><span></span></div>
                             <div class="circleCreIcon circleCreIconRight"><span></span></div>
                       </div>

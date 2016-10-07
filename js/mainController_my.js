@@ -30,11 +30,17 @@
 					$scope.areaList = res.list;
 				});
 			}else if( $scope.userInfo.load == 'school' ){
-				$publicService.getSchoolList({
-					sys:{}
-				}, function(res){
-					$scope.schoolList = res.school;
-				});
+				var schoolCache = JSON.parse($storage.getLocalStorage('SQZ_schoolList')) || [];
+				if( schoolCache.length > 0 ){
+					$scope.schoolList = schoolCache;
+				}else{
+					$publicService.getSchoolList({
+						sys:{}
+					}, function(res){
+						$scope.schoolList = res.school;
+						$storage.setLocalStorage('SQZ_schoolList', JSON.stringify($scope.schoolList));
+					});
+				}
 			}
 			$scope.filter = {
 				schoolFilter: function(item){
@@ -172,10 +178,12 @@
 							}, function(taskRes){
 								favoritObj.taskTypeName = taskTypeList[favoritObj.taskType].name;
 								favoritObj.corpName = taskRes.task.corpName;
+								favoritObj.addr = taskRes.task.addr;
 								favoritObj.distName = taskRes.task.distName;
 								favoritObj.dateFrom = taskRes.task.dateFrom;
 								favoritObj.dateTo = taskRes.task.dateTo;
 								favoritObj.salary = taskRes.task.salary;
+								favoritObj.payUnit = taskRes.task.payUnit;
 								favoritObj.url = '#jobDetails?' + $scope.commonFn.buildParamsForUrl({
 									jobId: favoritObj.targetId
 								});

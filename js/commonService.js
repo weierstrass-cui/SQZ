@@ -51,6 +51,11 @@
 				return deviceType;
 			},
 			post: function(fnName, json, callback, parm, showLoading){
+				var token = $storage.getLocalStorage('SQZ_token');
+				if( !token && (parm === undefined || !parm.ignorLogin) ){
+					$rootScope.$broadcast('onError', {title: '系统提示',  message: '您尚未登录，请先登录或注册！', redirt: 'login'});
+					return;
+				}
 				if( showLoading !== false){
 					$rootScope.isLoadingData = true;
 				}
