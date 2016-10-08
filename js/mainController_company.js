@@ -24,6 +24,7 @@
 						terminal: $scope.commonFn.getDevice()
 					}
 				}, function(res){
+					res.corp.descr = res.corp.descr ? res.corp.descr.replace(/\\n/gi, '<br />') : '暂无介绍'
 					$scope.corpInfo = res.corp;
 					$scope.jobList = res.search.result.query.response.docs;
 					for(var i in $scope.jobList){
@@ -87,6 +88,14 @@
 						enrollId = res.enroll.id;
 						$scope.isEnroll = true;
 						$scope.commonFn.alertMsg(null, '恭喜您报名成功');
+						$companyService.sendResumeAfterEnroll({
+							noName: enrollId,
+							sys: {
+								terminal: $scope.commonFn.getDevice()
+							}
+						}, function(sendResumeRes){
+
+						});
 					});
 				},
 				setFavorite: function(){

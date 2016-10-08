@@ -15,6 +15,9 @@
 			enroll:function(obj, callback){
 				request.post('/task/v10/enroll', obj, callback);
 			},
+			sendResumeAfterEnroll: function(obj, callback){
+				request.post('/task/v10/send/resumes', obj, callback);
+			},
 			cancelEnroll:function(obj, callback){
 				request.post('/task/v10/cancelEnroll', obj, callback);
 			},

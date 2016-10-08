@@ -1,4 +1,4 @@
-angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngFileUpload'])
+angular.module('starter', ['starter.controller', 'ngAnimate', 'ngTouch', 'ngSanitize', 'ngFileUpload'])
 .config(['$routeProvider', 
 	function($routeProvider){
 		$routeProvider
