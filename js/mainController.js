@@ -256,7 +256,6 @@
 			}
 
 			$userService.getUser({
-				noName: param.userId || $storage.getLocalStorage('SQZ_userId'),
 				sys: {
 					token: $scope.commonFn.getToken(),
 					terminal: $scope.commonFn.getDevice()
