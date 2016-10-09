@@ -185,8 +185,8 @@
 		}
 	]);
 	// 用户资料
-	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService','$publicService',
-		function($scope, $storage, $userService,$publicService){
+	mainCtrl.controller('userInfoController', ['$scope', '$storage', '$userService','$publicService','Upload',
+		function($scope, $storage, $userService,$publicService, $upload){
 			var areaName = [],
 				param = $scope.commonFn.getParamsFromUrl();
 			var getAreaName = function(areaId, callback){
@@ -203,6 +203,51 @@
 					id: id,
 					name: name
 				}));
+			}
+
+			$scope.fn = {
+				uploadFile: function(file){
+					if(file){
+						if( file.size < (2 * 1024 * 1024) ){
+							$publicService.getUploadToken({
+								sys: {
+									token: $scope.commonFn.getToken(),
+									terminal: $scope.commonFn.getDevice()
+								}
+							}, function(uploadToken){
+								$upload.upload({
+									url: 'http://filetest.54jeunesse.com:8088/file/fileService/upload',
+									data: {
+										token: uploadToken.token,
+										file: file
+									}
+								}).success(function(res){
+									$publicService.getPicture({
+										noName: res.result.fileNames[0],
+										sys: {
+											token: $scope.commonFn.getToken(),
+											terminal: $scope.commonFn.getDevice()
+										}
+									}, function(imageRes){
+										$userService.modifyUser({
+											user: {
+												head: res.result.fileNames[0]
+											},
+											sys: {
+												token: $scope.commonFn.getToken()
+											}
+										}, function(modifyUserRes){
+											$scope.commonFn.alertMsg(null, '上传头像成功');
+										});
+										$scope.thumbnail = imageRes;
+									});
+								});
+							});
+						}else{
+							$scope.commonFn.alertMsg(null, '您上传的图片太大，请使用2M以下的图片。');
+						}
+					}
+				}
 			}
 
 			$userService.getUser({
@@ -252,6 +297,18 @@
 						});
 					}
 				}
+				if( res.user.head ){
+					$publicService.getPicture({
+						noName: res.user.head,
+						sys: {
+							token: $scope.commonFn.getToken(),
+							terminal: $scope.commonFn.getDevice()
+						}
+					}, function(imageRes){
+						$scope.thumbnail = imageRes;
+					});
+				}
+				
 				$scope.userInfo = res.user;
 			});
 		}

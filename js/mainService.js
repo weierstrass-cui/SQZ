@@ -19,7 +19,13 @@
 			},
 			getOneSchool: function(obj, callback){
 				request.post('/schoolService/find', obj, callback, {ignorLogin: true});
-			}
+			},
+			getUploadToken: function(obj, callback){
+				request.post('/fileService/getToken', obj, callback, {ignorLogin: true});
+			},
+			getPicture: function(obj, callback){
+				request.post('/fileService/fetchImg', obj, callback, {ignorLogin: true});
+			},
 		}
 	}]);
 	mainCtrl.factory('$loginService', ['$request', function(request){

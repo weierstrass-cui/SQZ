@@ -1,6 +1,6 @@
 (function(){
 	var localUrl = 'http://apptest.54jeunesse.com:8088/part';
-
+	var uploadUrl = 'http://filetest.54jeunesse.com:8088/file';
 	// 重写 Date的toJSON方法，满足后台对日期格式的需求
 	// 1990-12-31T00:00:00Z
 	var addZero = function(num){
@@ -63,7 +63,12 @@
 					$rootScope.$broadcast('onError', {title: '系统提示',  message: '接口传递参数格式错误'});
 					return;
 				}
-				postUrl = localUrl + fnName;
+				if(fnName === '/fileService/getToken' || fnName === '/fileService/fetchImg'){
+					postUrl = uploadUrl + fnName;
+				}else{
+					postUrl = localUrl + fnName;
+				}
+				
 				for(var i in json){
 					if( i == 'noName'){
 						postUrl += ('/' + json[i]);
@@ -74,6 +79,13 @@
 						}
 					}
 				}
+				if( fnName === '/fileService/fetchImg' ){
+					if(typeof callback === 'function'){
+						callback(postUrl);
+					}
+					return;
+				}
+
 				if(postUrl === ''){
 					$rootScope.$broadcast('onError', {title: '系统提示',  message: '参数出错'});
 					return false;
@@ -87,6 +99,10 @@
 					if( res.status == 'succ' ){
 						if(typeof callback === 'function'){
 							callback(res.result);
+						}
+					}else if( fnName === '/fileService/fetchImg' ){
+						if(typeof callback === 'function'){
+							callback(res);
 						}
 					}else{
 						if( !isOnError ){
