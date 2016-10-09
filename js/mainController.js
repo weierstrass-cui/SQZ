@@ -223,25 +223,29 @@
 										file: file
 									}
 								}).success(function(res){
-									$publicService.getPicture({
-										noName: res.result.fileNames[0],
-										sys: {
-											token: $scope.commonFn.getToken(),
-											terminal: $scope.commonFn.getDevice()
-										}
-									}, function(imageRes){
-										$userService.modifyUser({
-											user: {
-												head: res.result.fileNames[0]
-											},
+									if( res.result.fileNames ){
+										$publicService.getPicture({
+											noName: res.result.fileNames[0],
 											sys: {
-												token: $scope.commonFn.getToken()
+												token: $scope.commonFn.getToken(),
+												terminal: $scope.commonFn.getDevice()
 											}
-										}, function(modifyUserRes){
-											$scope.commonFn.alertMsg(null, '上传头像成功');
+										}, function(imageRes){
+											$userService.modifyUser({
+												user: {
+													head: res.result.fileNames[0]
+												},
+												sys: {
+													token: $scope.commonFn.getToken()
+												}
+											}, function(modifyUserRes){
+												$scope.commonFn.alertMsg(null, '上传头像成功');
+											});
+											$scope.thumbnail = imageRes;
 										});
-										$scope.thumbnail = imageRes;
-									});
+									}else{
+										$scope.commonFn.alertMsg(null, '上传出错，请稍后重试');
+									}
 								});
 							});
 						}else{
