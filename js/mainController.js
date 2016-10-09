@@ -189,6 +189,7 @@
 		function($scope, $storage, $userService,$publicService, $upload){
 			var areaName = [],
 				param = $scope.commonFn.getParamsFromUrl();
+			$scope.thumbnail = null;
 			var getAreaName = function(areaId, callback){
 				$publicService.getOneArea({
 					noName: areaId,
