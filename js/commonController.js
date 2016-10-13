@@ -1,8 +1,9 @@
 var mainCtrl = '';
 (function(){
 	mainCtrl = angular.module('starter.controller', ['ngRoute']);
-	mainCtrl.controller('main', ['$scope', '$location', '$dictionary', '$storage',
-		function($scope, $location, $dictionary, $storage){
+	mainCtrl.controller('main', ['$scope', '$location', '$dictionary', '$storage', '$timeout',
+		function($scope, $location, $dictionary, $storage, $timeout){
+			$scope.showFloatNav = false;
 			$scope.paramsPool = {};
 			$scope.currentParams = {};
 			$scope.cacheDataPool = {};
@@ -54,6 +55,16 @@ var mainCtrl = '';
 			}
 
 			$scope.commonFn = {
+				showFloat: function(){
+					$scope.showFloatNav = true;
+					$timeout(function(){
+						$scope.showFloatNav = false;
+					}, 3000);
+				},
+				loginout: function(){
+					$storage.removeLocalStorage('SQZ_autoLogin');
+					$scope.commonFn.goView('/login', true);
+				},
 				setPublicData: function(key, value){
 					$scope.publicData[key] = value;
 				},

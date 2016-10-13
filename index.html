@@ -25,6 +25,12 @@
 </head>
 <body ng-app="starter" ng-controller="main" class="view-container">
     <div class="container view-frame" id="container" ng-view></div>
+    <a href="javascript://" ng-click="commonFn.showFloat();" ng-show="!showFloatNav" id="showFloatNav"></a>
+    <div id="floatNav" ng-class="{true:'showFloatNav', false:''}[showFloatNav]">
+        <a href="#userInfoEdit" class="home"></a>
+        <a href="javascript://" ng-click="commonFn.loginout();" class="logout"></a>
+        <a href="#myCollection" class="favorite"></a>
+    </div>
     <!-- Loading Toast -->
     <div id="loadingToast" class="weui_loading_toast" ng-show="isLoadingData">
         <div class="weui_mask_transparent"></div>
