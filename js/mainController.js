@@ -8,6 +8,7 @@
 	mainCtrl.controller('loginController', ['$scope', '$loginService','$storage',
 		function($scope,$loginService,$storage){
 			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin');
+			$scope.commonStatus.showQuick = true;
 			$scope.fn = {
 				loginSubmit:function(){
 					if(!$scope.loginList.loginName || !$scope.loginList.pass){
@@ -52,6 +53,7 @@
 		function($scope, $publicService, $getBackPsdService, $interval){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
+			$scope.commonStatus.showQuick = true;
 			$scope.fn = {
 				getCode:function(){
 					if( $scope.isChange ){
@@ -117,6 +119,7 @@
 		function($scope,$publicService,$interval,$registerService,$location){
 			$scope.timeTit = '获取验证码';
 			$scope.isChange = false;
+			$scope.commonStatus.showQuick = true;
 			$scope.submitList = {
 				phone:'',
 				captcha:'',

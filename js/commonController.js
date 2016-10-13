@@ -4,6 +4,9 @@ var mainCtrl = '';
 	mainCtrl.controller('main', ['$scope', '$location', '$dictionary', '$storage', '$timeout',
 		function($scope, $location, $dictionary, $storage, $timeout){
 			$scope.showFloatNav = false;
+			$scope.commonStatus = {
+				showQuick: false
+			}
 			$scope.paramsPool = {};
 			$scope.currentParams = {};
 			$scope.cacheDataPool = {};
