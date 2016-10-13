@@ -4,7 +4,7 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
-	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
+	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'},{id: '4',name: '校招'}];
 	// 个人资料编辑所有页面通用
 	mainCtrl.controller('userInfoEditController', ['$scope', '$storage', '$userService','$publicService',
 		function($scope,$storage,$userService,$publicService){

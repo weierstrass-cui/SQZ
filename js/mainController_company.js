@@ -4,7 +4,7 @@
 		console.log('mainCtrl 加载出错');
 		return;
 	}
-	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
+	var taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'},{id: '4',name: '校招'}];
 	// 公司详情
 	mainCtrl.controller('companyDetailController', ['$scope', '$companyService', '$storage',
 		function($scope, $companyService, $storage){

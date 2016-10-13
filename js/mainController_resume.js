@@ -6,7 +6,7 @@
 	}
 	var educationList = [{id: '0',name: '不详'},{id: '1',name: '专科'},{id: '2',name: '本科'},{id: '3',name: '硕士'},{id: '4',name: '博士'}],
 		politicalList = [{name: '党员'},{name: '团员'},{name: '群众'},{name: '其他'}],
-		taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'}];
+		taskTypeList = [{id: '0',name: '不详'},{id: '1',name: '兼职'},{id: '2',name: '实习'},{id: '3',name: '找事'},{id: '4',name: '校招'}];
 	// 我的简历
 	mainCtrl.controller('myResumeController', ['$scope', '$resumeService','$storage','$publicService',
 		function($scope, $resumeService,$storage,$publicService){
