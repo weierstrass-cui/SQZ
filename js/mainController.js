@@ -228,23 +228,26 @@
 										}
 									}).success(function(res){
 										if( res.result.fileNames ){
-											$publicService.getPicture({
-												noName: res.result.fileNames[0],
+											$userService.modifyUser({
+												user: {
+													head: res.result.fileNames[0]
+												},
 												sys: {
-													token: $scope.commonFn.getToken(),
+													token: $scope.commonFn.getToken()
+												}
+											}, function(modifyUserRes){
+												$scope.commonFn.alertMsg(null, '上传头像成功');
+											});
+											$publicService.getPicture({
+												fetchThumb: {
+													domain: 'head',
+													size: 'thumb',
+													fullFileName: res.result.fileNames[0],
+												},
+												sys: {
 													terminal: $scope.commonFn.getDevice()
 												}
 											}, function(imageRes){
-												$userService.modifyUser({
-													user: {
-														head: res.result.fileNames[0]
-													},
-													sys: {
-														token: $scope.commonFn.getToken()
-													}
-												}, function(modifyUserRes){
-													$scope.commonFn.alertMsg(null, '上传头像成功');
-												});
 												$scope.thumbnail = imageRes;
 											});
 										}else{
