@@ -219,7 +219,7 @@
 									terminal: $scope.commonFn.getDevice()
 								}
 							}, function(uploadToken){
-								try{
+								setTimeout(function(){
 									$upload.upload({
 										url: 'http://filetest.54jeunesse.com:8088/file/fileService/upload',
 										data: {
@@ -251,9 +251,7 @@
 											$scope.commonFn.alertMsg(null, '上传出错，请稍后重试');
 										}
 									});
-								}catch(e){
-									alert(JSON.stringify(e));
-								}
+								}, 100);
 							});
 						}else{
 							$scope.commonFn.alertMsg(null, '您上传的图片太大，请使用2M以下的图片。');
