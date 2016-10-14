@@ -308,9 +308,12 @@
 				}
 				if( res.user.head ){
 					$publicService.getPicture({
-						noName: res.user.head,
+						fetchThumb: {
+							domain: 'head',
+							size: 'thumb',
+							fullFileName: res.user.head,
+						},
 						sys: {
-							token: $scope.commonFn.getToken(),
 							terminal: $scope.commonFn.getDevice()
 						}
 					}, function(imageRes){

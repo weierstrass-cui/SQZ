@@ -24,7 +24,7 @@
 				request.post('/fileService/getToken', obj, callback, {ignorLogin: true});
 			},
 			getPicture: function(obj, callback){
-				request.post('/fileService/fetchImg', obj, callback, {ignorLogin: true});
+				request.post('/fileService', obj, callback, {ignorLogin: true});
 			},
 		}
 	}]);

@@ -63,7 +63,7 @@
 					$rootScope.$broadcast('onError', {title: '系统提示',  message: '接口传递参数格式错误'});
 					return;
 				}
-				if(fnName === '/fileService/getToken' || fnName === '/fileService/fetchImg'){
+				if(fnName === '/fileService/getToken' || fnName === '/fileService'){
 					postUrl = uploadUrl + fnName;
 				}else{
 					postUrl = localUrl + fnName;
@@ -79,7 +79,7 @@
 						}
 					}
 				}
-				if( fnName === '/fileService/fetchImg' ){
+				if( fnName === '/fileService' ){
 					if(typeof callback === 'function'){
 						callback(postUrl);
 					}
