@@ -227,7 +227,6 @@
 											file: file
 										}
 									}).success(function(res){
-										alert(JSON.stringify(res));
 										if( res.result.fileNames ){
 											$publicService.getPicture({
 												noName: res.result.fileNames[0],
@@ -236,7 +235,6 @@
 													terminal: $scope.commonFn.getDevice()
 												}
 											}, function(imageRes){
-												alert(JSON.stringify(imageRes));
 												$userService.modifyUser({
 													user: {
 														head: res.result.fileNames[0]
