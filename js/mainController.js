@@ -212,6 +212,7 @@
 			$scope.fn = {
 				uploadFile: function(file){
 					if(file){
+						alert(file.size+'    '+(2 * 1024 * 1024));
 						if( file.size < (2 * 1024 * 1024) ){
 							$publicService.getUploadToken({
 								sys: {
@@ -219,6 +220,7 @@
 									terminal: $scope.commonFn.getDevice()
 								}
 							}, function(uploadToken){
+								alert(JSON.stringify(uploadToken));
 								$upload.upload({
 									url: 'http://filetest.54jeunesse.com:8088/file/fileService/upload',
 									data: {
@@ -226,6 +228,7 @@
 										file: file
 									}
 								}).success(function(res){
+									alert(JSON.stringify(res));
 									if( res.result.fileNames ){
 										$publicService.getPicture({
 											noName: res.result.fileNames[0],
@@ -234,6 +237,7 @@
 												terminal: $scope.commonFn.getDevice()
 											}
 										}, function(imageRes){
+											alert(JSON.stringify(imageRes));
 											$userService.modifyUser({
 												user: {
 													head: res.result.fileNames[0]
