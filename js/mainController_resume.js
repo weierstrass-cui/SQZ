@@ -44,7 +44,7 @@
 							token: $scope.commonFn.getToken()
 						}
 					}, function(res){
-						console.log(res);
+						$scope.commonFn.alertMsg(null, '简历已发送到您的邮箱，请注意查收！');
 					});
 				}
 			}
