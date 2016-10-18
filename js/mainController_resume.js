@@ -38,11 +38,10 @@
 					$scope.isView = !$scope.isView;
 				},
 				sendResumeAsMail: function(){
-					return;
-					$resumeService.sendResume({
-						noName: $storage.getLocalStorage('SQZ_userId'),
+					$resumeService.sendResumeAsMail({
 						sys: {
-							terminal: $scope.commonFn.getDevice()
+							terminal: $scope.commonFn.getDevice(),
+							token: $scope.commonFn.getToken()
 						}
 					}, function(res){
 						console.log(res);

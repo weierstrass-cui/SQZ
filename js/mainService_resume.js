@@ -13,7 +13,7 @@
 				request.post('/userService/v10/resume', obj, callback);
 			},
 			sendResumeAsMail: function(obj, callback){
-				request.post('/task/v10/send/resumes', obj, callback);
+				request.post('/task/v10/send/resumes/myself', obj, callback);
 			}
 		}
 	}]);
