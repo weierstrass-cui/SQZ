@@ -28,8 +28,8 @@
 						}
 						$storage.setLocalStorage('SQZ_token', res.token);
 						$storage.setLocalStorage('SQZ_userId', res.user.id);
-						location.href = '#/userInfoEdit?userId=' + res.user.id;
-						// $scope.commonFn.goView('/userInfoEdit', true);
+						// location.href = '#/userInfoEdit?userId=' + res.user.id;
+						$scope.commonFn.goView('/userInfoEdit', true);
 					});
 				}
 			}
@@ -192,6 +192,7 @@
 		function($scope, $storage, $userService,$publicService, $upload){
 			var areaName = [],
 				param = $scope.commonFn.getParamsFromUrl();
+			$scope.commonStatus.showQuick = false;
 			$scope.thumbnail = null;
 			var getAreaName = function(areaId, callback){
 				$publicService.getOneArea({
