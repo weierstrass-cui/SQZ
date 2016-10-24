@@ -1,10 +1,5 @@
 var mainCtrl = '';
-(function(){
-	var piwikTracker = null;
-	if( Piwik ){
-		piwikTracker = Piwik.getTracker();
-	}
-	
+(function(){	
 	mainCtrl = angular.module('starter.controller', ['ngRoute']);
 	mainCtrl.controller('main', ['$scope', '$location', '$dictionary', '$storage', '$timeout',
 		function($scope, $location, $dictionary, $storage, $timeout){
@@ -64,8 +59,7 @@ var mainCtrl = '';
 
 			$scope.commonFn = {
 				getTracker: function(){
-					piwikTracker = piwikTracker || Piwik.getTracker()
-					return piwikTracker;
+					return _paq;
 				},
 				showFloat: function(){
 					$scope.showFloatNav = true;
@@ -224,14 +218,8 @@ var mainCtrl = '';
 				}else if( stateName && $scope.paramsPool[stateName] ){
 					$scope.currentParams = $scope.paramsPool[stateName];
 				}
-				if( Piwik ){
-					piwikTracker = piwikTracker || Piwik.getTracker();
-				}
-				console.log(piwikTracker);
-				if( piwikTracker ){
-					console.log(stateName);
-					piwikTracker.trackPageView(stateName);
-				}
+				
+				_paq.push(['trackPageView', stateName]);
 			});
 
 			// 阻止橡皮筋效果

@@ -113,6 +113,8 @@
 
 				$scope.userInfo = resumeCache.resumeData;
 			}
+			var trackEventUser = $scope.userInfo.name + '-' + $scope.userInfo.gender + '-' + $scope.userInfo.resumePhone + '-' + $scope.userInfo.schoolName;
+			_paq.push(['trackEvent', '查看简历', trackEventUser]);
 		}
 	]);
 	// 简历编辑通用方法

@@ -58,6 +58,7 @@
 			var param = $scope.commonFn.getParamsFromUrl();
 			var enrollId = null, taskType = null, favoriteId = null;
 			var userId = $storage.getLocalStorage('SQZ_userId') || '0';
+			var trackEventName = '';
 			$scope.isEnroll = false;
 			$scope.isFavorite = true;
 			$scope.workTypeName = param.workTypeName;
@@ -88,13 +89,14 @@
 						enrollId = res.enroll.id;
 						$scope.isEnroll = true;
 						$scope.commonFn.alertMsg(null, '恭喜您报名成功');
+						_paq.push(['trackEvent', '报名职位', trackEventName]);
 						$companyService.sendResumeAfterEnroll({
 							noName: enrollId,
 							sys: {
 								terminal: $scope.commonFn.getDevice()
 							}
 						}, function(sendResumeRes){
-
+							
 						});
 					});
 				},
@@ -112,6 +114,7 @@
 						favoriteId = res.favoriteId;
 						$scope.isFavorite = true;
 						$scope.commonFn.alertMsg(null, '收藏成功');
+						_paq.push(['trackEvent', '收藏职位', trackEventName]);
 					});
 				},
 				unSetFavorite: function(){
@@ -165,6 +168,8 @@
 					favoriteId = res.favoriteId;
 				}
 				$scope.taskInfo = res.task;
+				trackEventName = $scope.taskInfo.corpName + ':' + $scope.taskInfo.name;
+				_paq.push(['trackEvent', '查看职位', trackEventName]);
 			});
 		}
 	]);
