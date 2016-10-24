@@ -22,6 +22,22 @@
     <script src="js/mainService_company.js"></script>
     <script src="js/mainService_resume.js"></script>
     <script src="http://api.map.baidu.com/api?v=2.0&ak=cU0K3wSUzsT8UqIGf8puNY3FfQroQ7iG" type="text/javascript"></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["setDomains", ["*.sqz.52ladybug.com"]]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//analytics.52ladybug.com/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 3]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//analytics.52ladybug.com/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
 </head>
 <body ng-app="starter" ng-controller="main" class="view-container">
     <div class="container view-frame" id="container" ng-view></div>

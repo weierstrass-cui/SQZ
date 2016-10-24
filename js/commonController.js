@@ -1,5 +1,10 @@
 var mainCtrl = '';
 (function(){
+	var piwikTracker = null;
+	if( Piwik ){
+		piwikTracker = Piwik.getTracker();
+	}
+	
 	mainCtrl = angular.module('starter.controller', ['ngRoute']);
 	mainCtrl.controller('main', ['$scope', '$location', '$dictionary', '$storage', '$timeout',
 		function($scope, $location, $dictionary, $storage, $timeout){
@@ -58,6 +63,10 @@ var mainCtrl = '';
 			}
 
 			$scope.commonFn = {
+				getTracker: function(){
+					piwikTracker = piwikTracker || Piwik.getTracker()
+					return piwikTracker;
+				},
 				showFloat: function(){
 					$scope.showFloatNav = true;
 					$timeout(function(){
@@ -214,6 +223,14 @@ var mainCtrl = '';
 					$scope.currentParams = $scope.paramsPool[stateName] = params;
 				}else if( stateName && $scope.paramsPool[stateName] ){
 					$scope.currentParams = $scope.paramsPool[stateName];
+				}
+				if( Piwik ){
+					piwikTracker = piwikTracker || Piwik.getTracker();
+				}
+				console.log(piwikTracker);
+				if( piwikTracker ){
+					console.log(stateName);
+					piwikTracker.trackPageView(stateName);
 				}
 			});
 
