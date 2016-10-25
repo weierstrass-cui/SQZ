@@ -157,9 +157,9 @@
 							break;
 					}
 				}
-				if( res.enrollList.length > 0 ){
+				if( res.enrollId != 0 ){
 					$scope.isEnroll = true;
-					enrollId = res.enrollList[0].id;
+					enrollId = res.enrollId;
 				}
 				
 				if( res.favoriteId == 0 ){
