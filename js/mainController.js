@@ -7,6 +7,18 @@
     // 登录
 	mainCtrl.controller('loginController', ['$scope', '$loginService','$storage',
 		function($scope,$loginService,$storage){
+
+			$storage.removeLocalStorage('SQZ_area');
+			$storage.removeLocalStorage('SQZ_favorites');
+			$storage.removeLocalStorage('SQZ_jobList');
+			$storage.removeLocalStorage('SQZ_myTimeList');
+			$storage.removeLocalStorage('SQZ_resume');
+			$storage.removeLocalStorage('SQZ_school');
+			$storage.removeLocalStorage('SQZ_token');
+			$storage.removeLocalStorage('SQZ_autoLogin');
+			$storage.removeLocalStorage('SQZ_userInfo');
+			$storage.removeLocalStorage('SQZ_userId');
+
 			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin');
 			$scope.commonStatus.showQuick = true;
 			$scope.fn = {

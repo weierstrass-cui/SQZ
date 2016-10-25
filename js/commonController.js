@@ -59,7 +59,11 @@ var mainCtrl = '';
 
 			$scope.commonFn = {
 				getTracker: function(){
-					return _paq;
+					try{
+						return _paq || null;
+					}catch(e){
+						return null;
+					}
 				},
 				showFloat: function(){
 					$scope.showFloatNav = true;
@@ -219,7 +223,7 @@ var mainCtrl = '';
 					$scope.currentParams = $scope.paramsPool[stateName];
 				}
 				
-				_paq.push(['trackPageView', stateName]);
+				if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackPageView', stateName]);
 			});
 
 			// 阻止橡皮筋效果

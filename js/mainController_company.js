@@ -89,7 +89,7 @@
 						enrollId = res.enroll.id;
 						$scope.isEnroll = true;
 						$scope.commonFn.alertMsg(null, '恭喜您报名成功');
-						_paq.push(['trackEvent', '报名职位', trackEventName]);
+						if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackEvent', '报名职位', trackEventName]);
 						$companyService.sendResumeAfterEnroll({
 							noName: enrollId,
 							sys: {
@@ -114,7 +114,7 @@
 						favoriteId = res.favoriteId;
 						$scope.isFavorite = true;
 						$scope.commonFn.alertMsg(null, '收藏成功');
-						_paq.push(['trackEvent', '收藏职位', trackEventName]);
+						if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackEvent', '收藏职位', trackEventName]);
 					});
 				},
 				unSetFavorite: function(){
@@ -169,7 +169,7 @@
 				}
 				$scope.taskInfo = res.task;
 				trackEventName = $scope.taskInfo.corpName + ':' + $scope.taskInfo.name;
-				_paq.push(['trackEvent', '查看职位', trackEventName]);
+				if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackEvent', '查看职位', trackEventName]);
 			});
 		}
 	]);

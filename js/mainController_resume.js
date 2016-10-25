@@ -96,25 +96,29 @@
 					}));
 					
 					$scope.userInfo = resumeData;
+					var trackEventUser = ($scope.userInfo.name || '姓名') + '-' + ($scope.userInfo.gender || '性别') + '-' + ($scope.userInfo.resumePhone || '电话') + '-' + ($scope.userInfo.schoolName || '学校');
+					if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackEvent', '查看简历', trackEventUser]);
 				});
 			}else{
 				resumeCache.resumeData.birthDayFack = resumeCache.resumeData.birthDay ? resumeCache.resumeData.birthDay.split(' ')[0] : '';
 				if( schoolCache && schoolCache.id == resumeCache.resumeData.schoolId ){
 					resumeCache.resumeData.schoolName = schoolCache.name;
 				}else{
-					$publicService.getOneSchool({
-						noName: resumeCache.resumeData.schoolId,
-						sys:{}
-					},function(schoolRES){
-						resumeCache.resumeData.schoolName = schoolRES.school.name;
-						$storage.setLocalStorage('SQZ_school', JSON.stringify({id: resumeCache.resumeData.schoolId, name: schoolRES.school.name}));
-					});
+					if( resumeCache.resumeData.schoolId != 0){
+						$publicService.getOneSchool({
+							noName: resumeCache.resumeData.schoolId,
+							sys:{}
+						},function(schoolRES){
+							resumeCache.resumeData.schoolName = schoolRES.school.name;
+							$storage.setLocalStorage('SQZ_school', JSON.stringify({id: resumeCache.resumeData.schoolId, name: schoolRES.school.name}));
+						});
+					}
 				}
 
 				$scope.userInfo = resumeCache.resumeData;
+				var trackEventUser = ($scope.userInfo.name || '姓名') + '-' + ($scope.userInfo.gender || '性别') + '-' + ($scope.userInfo.resumePhone || '电话') + '-' + ($scope.userInfo.schoolName || '学校');
+				if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackEvent', '查看简历', trackEventUser]);
 			}
-			var trackEventUser = $scope.userInfo.name + '-' + $scope.userInfo.gender + '-' + $scope.userInfo.resumePhone + '-' + $scope.userInfo.schoolName;
-			_paq.push(['trackEvent', '查看简历', trackEventUser]);
 		}
 	]);
 	// 简历编辑通用方法
