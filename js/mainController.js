@@ -19,7 +19,8 @@
 			$storage.removeLocalStorage('SQZ_userInfo');
 			$storage.removeLocalStorage('SQZ_userId');
 
-			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin');
+			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin'),
+				param = $scope.commonFn.getParamsFromUrl();
 			$scope.commonStatus.showQuick = true;
 			$scope.fn = {
 				loginSubmit:function(){
@@ -44,6 +45,8 @@
 
 						if( $storage.getLocalStorage('SQZ_isScan') == '1' ){
 							$scope.commonFn.goLastView();
+							$storage.removeLocalStorage('SQZ_isScan');
+							$scope.commonStatus.showQuick = false;
 						}else{
 							$scope.commonFn.goView('/userInfoEdit', true);
 						}

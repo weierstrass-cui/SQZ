@@ -218,10 +218,6 @@ var mainCtrl = '';
 					}
 				}
 
-				if( last && last.$$route && current.$$route.controller !== 'loginController' && last.$$route.originalPath === '/jobDetails' ){
-					$storage.setLocalStorage('SQZ_isScan', '1');
-				}
-
 				if( params && stateName ){
 					$scope.currentParams = $scope.paramsPool[stateName] = params;
 				}else if( stateName && $scope.paramsPool[stateName] ){
