@@ -41,7 +41,12 @@
 						$storage.setLocalStorage('SQZ_token', res.token);
 						$storage.setLocalStorage('SQZ_userId', res.user.id);
 						// location.href = '#/userInfoEdit?userId=' + res.user.id;
-						$scope.commonFn.goView('/userInfoEdit', true);
+
+						if( $storage.getLocalStorage('SQZ_isScan') == '1' ){
+							$scope.commonFn.goLastView();
+						}else{
+							$scope.commonFn.goView('/userInfoEdit', true);
+						}
 					});
 				}
 			}
