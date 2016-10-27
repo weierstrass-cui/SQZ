@@ -74,6 +74,7 @@ var mainCtrl = '';
 				loginout: function(){
 					$storage.removeLocalStorage('SQZ_autoLogin');
 					$scope.commonFn.goView('/login', true);
+					$scope.showFloatNav = false;
 				},
 				setPublicData: function(key, value){
 					$scope.publicData[key] = value;

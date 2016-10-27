@@ -259,13 +259,13 @@ input[type="date"].emptyDate:before, input.localDateTime.emptyDate:before{ conte
     .companyInfo h4{margin-top:0.8rem;}
 }
 
-#floatNav{position:fixed;top:30%;left:-10rem;z-index:99;background:rgba(0,0,0,0.4);width:10rem;height:10rem;border-radius:50%;transition: left .2s linear;}
+#floatNav{position:fixed;top:30%;left:-12rem;z-index:99;background:rgba(0,0,0,0.4);width:12rem;height:12rem;border-radius:50%;transition: left .1s linear;}
 #floatNav a{width:25px;height:25px;display:block;position:absolute;}
 #floatNav .home{background:url(../img/yh.png) no-repeat;background-size:100%;right:27px;top:14px;}
 #floatNav .logout{background:url(../img/tc.png) no-repeat;background-size:100%;right:7px;top:49px;}
 #floatNav .favorite{background:url(../img/sc.png) no-repeat;background-size:100%;right:27px;top:82px;}
-#showFloatNav{background:url(../img/jt.png) no-repeat 2.5rem center rgba(0,0,0,0.4);border-radius:50%;background-size:40%;display:block;width:5rem;height:5rem;position:fixed;z-index:98;top:40%;margin-top:-2.5rem;left:-2.5rem;}
-#floatNav.showFloatNav{left:-5rem;}
+#showFloatNav{background:url(../img/jt.png) no-repeat 2.5rem center rgba(0,0,0,0.4);border-radius:50%;background-size:40%;display:block;width:6rem;height:6rem;position:fixed;z-index:98;top:40%;margin-top:-2.5rem;left:-2.5rem;}
+#floatNav.showFloatNav{left:-6rem;}
 
 
 
