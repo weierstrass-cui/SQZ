@@ -14,10 +14,11 @@
 				schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));;
 			$scope.isView = false;
 			$scope.fn = {
-				saveResume: function(keepPage){
+				saveResume: function(keepPage, callBack){
 					var afterSave = function(){
 						$storage.removeLocalStorage('SQZ_resume');
 						if( !keepPage ) $scope.commonFn.goLastView();
+						if( typeof callBack === 'function' ) callBack();
 					}
 					if( resumeCache && resumeCache.isChange == '1' ){
 						$resumeService.modifyResume({
@@ -38,14 +39,26 @@
 					$scope.isView = !$scope.isView;
 				},
 				sendResumeAsMail: function(){
-					$resumeService.sendResumeAsMail({
-						sys: {
-							terminal: $scope.commonFn.getDevice(),
-							token: $scope.commonFn.getToken()
-						}
-					}, function(res){
-						$scope.commonFn.alertMsg(null, '简历已发送到您的邮箱，请注意查收！');
-					});
+					var sendMail = function(){
+						$resumeService.sendResumeAsMail({
+							sys: {
+								terminal: $scope.commonFn.getDevice(),
+								token: $scope.commonFn.getToken()
+							}
+						}, function(res){
+							$scope.commonFn.alertMsg(null, '简历已发送到您的邮箱，请注意查收！');
+						});
+					}
+					var myResume = JSON.parse($storage.getLocalStorage('SQZ_resume'));
+					if( myResume && myResume.isChange == '1' ){
+						$scope.commonFn.confirmMsg(null, '您的简历已经修改，是否立即保存？', function(){
+							$scope.fn.saveResume(true, sendMail);
+						}, function(){
+							$storage.removeLocalStorage('SQZ_resume');
+						});
+					}else{
+						sendMail();
+					}
 				}
 			}
 			if( !resumeCache ){

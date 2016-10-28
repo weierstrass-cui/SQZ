@@ -15,8 +15,6 @@
 			$storage.removeLocalStorage('SQZ_resume');
 			$storage.removeLocalStorage('SQZ_school');
 			$storage.removeLocalStorage('SQZ_token');
-			$storage.removeLocalStorage('SQZ_autoLogin');
-			$storage.removeLocalStorage('SQZ_userInfo');
 			$storage.removeLocalStorage('SQZ_userId');
 
 			var autoLogin = $storage.getLocalStorage('SQZ_autoLogin'),
