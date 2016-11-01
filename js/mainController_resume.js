@@ -13,6 +13,19 @@
 			var resumeCache = JSON.parse($storage.getLocalStorage('SQZ_resume')),
 				schoolCache = JSON.parse($storage.getLocalStorage('SQZ_school'));;
 			$scope.isView = false;
+			var checkResume = function(){
+				var isEmptyResume = (false || $scope.userInfo.name == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.gender == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.birthDay == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.resumePhone == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.email == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.schoolId == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.education == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.political == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.taskType == '');
+					isEmptyResume = (isEmptyResume || $scope.userInfo.experience == '');
+				return isEmptyResume;
+			}
 			$scope.fn = {
 				saveResume: function(keepPage, callBack){
 					var afterSave = function(){
@@ -39,6 +52,11 @@
 					$scope.isView = !$scope.isView;
 				},
 				sendResumeAsMail: function(){
+					if( checkResume() ){
+						$scope.commonFn.alertMsg(null, '请先完善您的简历！');
+						return;
+					}
+					var myResume = JSON.parse($storage.getLocalStorage('SQZ_resume'));
 					var sendMail = function(){
 						$resumeService.sendResumeAsMail({
 							sys: {
@@ -49,7 +67,6 @@
 							$scope.commonFn.alertMsg(null, '简历已发送到您的邮箱，请注意查收！');
 						});
 					}
-					var myResume = JSON.parse($storage.getLocalStorage('SQZ_resume'));
 					if( myResume && myResume.isChange == '1' ){
 						$scope.commonFn.confirmMsg(null, '您的简历已经修改，是否立即保存？', function(){
 							$scope.fn.saveResume(true, sendMail);
