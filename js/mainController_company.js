@@ -82,7 +82,7 @@
 					terminal: $scope.commonFn.getDevice()
 				}
 			}, function(res){
-				$scope.hasResume = checkResume(res);
+				$scope.hasResume = !checkResume(res.user);
 			});
 
 			$scope.fn = {
