@@ -53,8 +53,8 @@
 	]);
 
 	// 职位详情
-	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService',
-		function($scope, $companyService, $storage, $publicService){
+	mainCtrl.controller('jobDetailController', ['$scope', '$companyService', '$storage', '$publicService', '$resumeService',
+		function($scope, $companyService, $storage, $publicService, $resumeService){
 			var param = $scope.commonFn.getParamsFromUrl();
 			var enrollId = null, taskType = null, favoriteId = null;
 			var userId = $storage.getLocalStorage('SQZ_userId') || '0';
@@ -62,6 +62,29 @@
 			$scope.isEnroll = false;
 			$scope.isFavorite = true;
 			$scope.workTypeName = param.workTypeName;
+			$scope.hasResume = false;
+			var checkResume = function(res){
+				var isEmptyResume = (false || res.name == '');
+					isEmptyResume = (isEmptyResume || res.gender == '');
+					isEmptyResume = (isEmptyResume || res.birthDay == '');
+					isEmptyResume = (isEmptyResume || res.resumePhone == '');
+					isEmptyResume = (isEmptyResume || res.email == '');
+					isEmptyResume = (isEmptyResume || res.schoolId == '');
+					isEmptyResume = (isEmptyResume || res.education == '');
+					isEmptyResume = (isEmptyResume || res.political == '');
+					isEmptyResume = (isEmptyResume || res.taskType == '');
+					isEmptyResume = (isEmptyResume || res.experience == '');
+				return isEmptyResume;
+			}
+			$resumeService.getResume({
+				sys: {
+					token: $scope.commonFn.getToken(),
+					terminal: $scope.commonFn.getDevice()
+				}
+			}, function(res){
+				$scope.hasResume = checkResume(res);
+			});
+
 			$scope.fn = {
 				cancelEnroll: function(){
 					if( !enrollId ){
@@ -80,6 +103,12 @@
 					});
 				},
 				enroll: function(){
+					if( !$scope.hasResume ){
+						$scope.commonFn.alertMsg(null, '报名前请先完善您的简历', function(){
+							$scope.commonFn.goView('/myResume');
+						});
+						return;
+					}
 					$companyService.enroll({
 						noName: param.jobId,
 						sys: {

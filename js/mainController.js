@@ -185,12 +185,15 @@
 					}else if(!$scope.vaildata.checkPhone($scope.submitList.phone)){
 		                $scope.commonFn.alertMsg("输入错误", "手机号有误");
 						return false;
-		            };
-
+		            }
 					if( !$scope.submitList.captcha ){
 						$scope.commonFn.alertMsg('系统提醒', '请输入验证码');
 						return false;
-					};
+					}
+					if( !$scope.readText ){
+						$scope.commonFn.alertMsg('系统提醒', '请确认已阅读用户条款');
+						return false;
+					}
 					
 					//提交信息接口
 					$registerService.registerRecommend({
