@@ -225,7 +225,7 @@ var mainCtrl = '';
 					$scope.currentParams = $scope.paramsPool[stateName];
 				}
 				
-				if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['trackPageView', stateName]);
+				if( $scope.commonFn.getTracker() ) $scope.commonFn.getTracker().push(['setDocumentTitle', stateName]);
 			});
 
 			// 阻止橡皮筋效果
